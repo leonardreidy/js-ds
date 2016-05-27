@@ -38,12 +38,18 @@ var Stack = (function() {
 
 	/**
 	 * Pop element off the stack. This method is essentially the reverse of the push() function 
-	 * returning the element in the top position of the stack and decrementing the top variable
-	 * @return {*} Return the element at the top of the stack.
+	 * returning the element in the top position of the stack and decrementing the top variable.
+	 * If a caller attempts to pop elements off an empty stack the stack is cleared (reset). 
+	 * @return {*} Return the element at the top of the stack, or -1 if the stack is empty.
 	 */
 	Stack.prototype.pop = function() {
-		this.datastore.pop(); // use Array.prototype.pop to remove last element of datastore
-		return this.datastore[--this.top];
+		if(this.top <= 0) {
+			this.clear(); // reinitialise the underlying datastore and reset the top variable
+			return -1;	  // return -1 to indicate to the caller that the operation was unsuccessful
+		} else {
+			this.datastore.pop(); // use Array.prototype.pop to remove last element of datastore
+			return this.datastore[--this.top];
+		}
 	}
 
 	/**

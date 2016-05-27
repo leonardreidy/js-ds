@@ -68,7 +68,7 @@ var Stack = (function() {
 	 * @return {number} Return the number of elements in the stack.
 	 */
 	Stack.prototype.getLength = function() {
-		return this.listSize;
+		return this.top;
 	};
 
 	/**

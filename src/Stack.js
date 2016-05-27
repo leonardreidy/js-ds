@@ -24,20 +24,26 @@ var Stack = (function() {
 		this.datastore = []; // An array is the underlying data structure
 		this.top = 0;// The top of the stack
 	}
-
+    
 	/**
-	 * Push new element onto stack. When the caller pushes a new element 
+	 * @memberOf  Stack
+	 * @instance 
+	 * @method  push
+	 * @description  Push new element onto stack. When the caller pushes a new element 
 	 * onto the stack it is stored in the top position identified by the top 
 	 * variable and the latter is incremented so that the new top is the next
 	 * vacant position in the array. 
-	 * @param element Element to be added to stack
+	 * @param element {*} Element to be added to stack
 	 */
 	Stack.prototype.push = function(element) {
 		this.datastore[this.top++] = element;
 	}
 
 	/**
-	 * Pop element off the stack. This method is essentially the reverse of the push() function 
+	 * @memberOf  Stack
+	 * @instance
+	 * @method  pop
+	 * @description  Pop element off the stack. This method is essentially the reverse of the push() function 
 	 * returning the element in the top position of the stack and decrementing the top variable.
 	 * If a caller attempts to pop elements off an empty stack the stack is cleared (reset). 
 	 * @return {*} Return the element at the top of the stack, or -1 if the stack is empty.
@@ -53,7 +59,10 @@ var Stack = (function() {
 	}
 
 	/**
-	 * Return the top element of the stack by accessing the element at the top-1 position of the 
+	 * @memberOf  Stack
+	 * @instance
+	 * @method  peek
+	 * @description  Return the top element of the stack by accessing the element at the top-1 position of the 
 	 * underlying datastore (array).
 	 * @return {*} Return the top element of the stack or undefined if the stack is empty
 	 */
@@ -62,7 +71,10 @@ var Stack = (function() {
 	}
 
 	/**
-	 * Reset the stack and reinitialise the underlying datastore.
+	 * @memberOf  Stack
+	 * @instance
+	 * @method  clear
+	 * @description  Reset the stack and reinitialise the underlying datastore.
 	 */
 	Stack.prototype.clear = function() {
 		this.datastore = [];
@@ -70,7 +82,10 @@ var Stack = (function() {
 	}
 
 	/**
-	 * Get the number of elements in the stack. 
+	 * @memberOf  Stack
+	 * @instance 
+	 * @method getLength
+	 * @description  Get the number of elements in the stack. 
 	 * @return {number} Return the number of elements in the stack.
 	 */
 	Stack.prototype.getLength = function() {
@@ -78,7 +93,10 @@ var Stack = (function() {
 	};
 
 	/**
-	 * Get a string representation of the stack.
+	 * @memberOf  Stack
+	 * @instance
+	 * @method  toString
+	 * @description  Get a string representation of the stack.
 	 * @return {string} Return a string representation of the stack.
 	 */
 	Stack.prototype.toString = function() {

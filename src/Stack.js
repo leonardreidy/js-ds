@@ -21,7 +21,6 @@ var Stack = (function() {
 	 * @constructor
 	 */
 	function Stack() {	
-		// Stack properties
 		this.datastore = []; // An array is the underlying data structure
 		this.top = 0;// The top of the stack
 	}
@@ -37,7 +36,6 @@ var Stack = (function() {
 		this.datastore[this.top++] = element;
 	}
 
-	
 	/**
 	 * Pop element off the stack. This method is essentially the reverse of the push() function 
 	 * returning the element in the top position of the stack and decrementing the top variable

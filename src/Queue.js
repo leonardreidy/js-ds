@@ -9,10 +9,10 @@
  * Elements may be added to a queue with the 'enqueue' operation and removed from a 
  * queue with the 'dequeue' operation. The back and front of a queue may be accessed
  * with the 'back' and 'front' methods, which are analogous to the 'peek' method of 
- * a stack. The 'delete' operation deletes the queue. The 'getLength' operation gets 
- * the number of elements in a queue. The 'isEmpty' operation determines whether or 
- * not a queue is empty. The 'toString' operation returns a string representation of
- * the queue. 
+ * a stack. The 'clear' operation deletes the underlying datastore then declares and 
+ * reinitialises the queue. The 'getLength' operation gets the number of elements in 
+ * a queue. The 'isEmpty' operation determines whether or not a queue is empty. The 
+ * 'toString' operation returns a string representation of the queue. 
  */
 var Queue = (function () {
 
@@ -70,15 +70,11 @@ var Queue = (function () {
         if (this.queue.length === 0) {
         	return undefined;
         }
-        var element = this.queue[this.offset];
-        if (++this.offset * 2 >= this.queue.length) {
-            this.queue = this.queue.slice(this.offset);
-            this.offset = 0;
-        }
+        var element = this.queue.shift();
         return element;
     };
 
-    // Delete/reinitialise the queue
+    // Clear/reinitialise the queue
     
     // Exercise some caution with delete - it has limitations and 
     // constraints. In general, if you try to delete a property that
@@ -96,11 +92,11 @@ var Queue = (function () {
     /**
      * @memberOf  Queue
      * @instance
-     * @method  delete
-     * @description  Delete the queue.
+     * @method  clear
+     * @description  Clear the queue.
      * 
      */
-    Queue.prototype.delete = function() {
+    Queue.prototype.clear = function() {
         delete this.queue;
     	this.queue = [];
     };

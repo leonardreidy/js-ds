@@ -6,7 +6,7 @@ describe("Stack", function() {
 		stack = new Stack();
 		stack.push('a');
 		stack.push('b');
-		stack.push('c')
+		stack.push('c');
 	});
 
 	// Test push

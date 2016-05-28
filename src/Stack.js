@@ -52,10 +52,10 @@ var Stack = (function() {
 		if(this.top <= 0) {
 			this.clear(); // reinitialise the underlying datastore and reset the top variable
 			return -1;	  // return -1 to indicate to the caller that the operation was unsuccessful
-		} else {
-			this.datastore.pop(); // use Array.prototype.pop to remove last element of datastore
-			return this.datastore[--this.top];
 		}
+		var popped = this.datastore.pop(); // use Array.prototype.pop to remove last element of datastore
+		--this.top;
+		return popped;
 	}
 
 	/**

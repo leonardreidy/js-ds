@@ -11,14 +11,10 @@ describe("Queue", function(){
 
 	// Test isEmpty
 	it('determines whether or not the queue is empty', function() {
-		console.log(queue.back());
 		expect(queue.isEmpty()).not.toEqual(true);
 		for(var i = 0; i < 3; i++)
 		{
 			queue.dequeue();
-			console.log(queue.front());
-			console.log("\n");
-			console.log(queue.getLength());
 		}
 		expect(queue.isEmpty()).not.toEqual(false);
 	});

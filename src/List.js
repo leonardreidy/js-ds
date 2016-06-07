@@ -1,51 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: List.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: List.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
+/**
  * List.js - JavaScript OO Implementation of List Data Structure
  */
 
 /**
  * @class
- * A &lt;em>List&lt;/em> is an ordered sequence of data elements. New elements are appended
- * to the end of a list with the &lt;em>append&lt;/em> operation. Elements can be inserted 
+ * A <em>List</em> is an ordered sequence of data elements. New elements are appended
+ * to the end of a list with the <em>append</em> operation. Elements can be inserted 
  * into a list after an existing element or at the beginning of the list with 
- * the &lt;em>insert&lt;/em> operation. Elements can be removed from a list with the &lt;em>
- * remove&lt;/em> operation. The elements in a list can be removed en masse with the &lt;em>
- * clear&lt;/em> operation. The &lt;em>toString&lt;/em> operation returns a string representation of the 
- * list. The &lt;em>getCurrent&lt;/em> operation returns the current element. The &lt;em>next&lt;/em> operation 
- * is used to traverse the list from left to right, the &lt;em>prev&lt;/em> operation to traverse from 
- * right to left. The &lt;em>moveTo&lt;/em> operation allows the caller to move to any arbitrary 
- * location in the list. The &lt;em>contains&lt;/em> operation is used to see if a particular element
- * can be found in the list. The &lt;em>front&lt;/em> operation moves to the front of the list 
- * and the &lt;em>back&lt;/em> operation moves to the back of the list. The &lt;em>isEmpty&lt;/em> operation determines 
- * whether or not the list is empty. The &lt;em>currPos&lt;/em> operation gets the current position in the list. 
- * The &lt;em>length&lt;/em> length operation gets the number of elements in a list.  
+ * the <em>insert</em> operation. Elements can be removed from a list with the <em>
+ * remove</em> operation. The elements in a list can be removed en masse with the <em>
+ * clear</em> operation. The <em>toString</em> operation returns a string representation of the 
+ * list. The <em>getCurrent</em> operation returns the current element. The <em>next</em> operation 
+ * is used to traverse the list from left to right, the <em>prev</em> operation to traverse from 
+ * right to left. The <em>moveTo</em> operation allows the caller to move to any arbitrary 
+ * location in the list. The <em>contains</em> operation is used to see if a particular element
+ * can be found in the list. The <em>front</em> operation moves to the front of the list 
+ * and the <em>back</em> operation moves to the back of the list. The <em>isEmpty</em> operation determines 
+ * whether or not the list is empty. The <em>currPos</em> operation gets the current position in the list. 
+ * The <em>length</em> length operation gets the number of elements in a list.  
  */
 
 var List = (function () {
@@ -98,7 +70,7 @@ var List = (function () {
 	 * @return {number}  The index of the given element or -1 if element not found
 	 */
 	List.prototype.find = function(element) {
-		for(var i = 0; i &lt; this.datastore.length; ++i) {
+		for(var i = 0; i < this.datastore.length; ++i) {
 				if(this.datastore[i] == element) {
 					return i;
 				}
@@ -114,7 +86,7 @@ var List = (function () {
 	 * @param  {Number} position The index of the new position in the list
 	 */
 	List.prototype.moveTo = function(position) {
-		if(typeof(position) === "number" &amp;&amp; !(position >= this.datastore.length)) {
+		if(typeof(position) === "number" && !(position >= this.datastore.length)) {
 				this.pos = position;
 				return 1;
 			}
@@ -213,7 +185,7 @@ var List = (function () {
 	 * @return {*} The next element
 	 */
 	List.prototype.next = function() {
-		if(this.pos &lt; this.size-1) {
+		if(this.pos < this.size-1) {
 				return this.datastore[++this.pos];
 			}
 			return -1;
@@ -264,7 +236,7 @@ var List = (function () {
 	 * @return {boolean}  True if the list contains the element, false otherwise
 	 */
 	List.prototype.contains = function(element) {
-		for(var i = 0; i &lt; this.datastore.length; ++i) {
+		for(var i = 0; i < this.datastore.length; ++i) {
 				if(this.datastore[i] == element) {
 					return true;
 				}
@@ -274,26 +246,4 @@ var List = (function () {
 
 	return List;
 
-}());</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="List.html">List</a></li><li><a href="Queue.html">Queue</a></li><li><a href="Stack.html">Stack</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jun 07 2016 16:21:20 GMT+0100 (GMT Daylight Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>
+}());

@@ -3,15 +3,14 @@
  */
 
  /**
+ * @class
  * A stack is essentially a list of data elements which may be accessed at only one end. 
  * Stacks are last-in, first-out (LIFO) data structures. Elements may be added to a stack
- * with the 'push' operation and removed from a stack with the 'pop' operation. The element
- * at the top of the stack may be viewed with the 'peek' operation; this operation returns
- * the element without removing it from the stack. The 'clear' operation 'deletes' the contents
- * of the stack. The 'getLength' operation returns the length (number of elements contained)
- * in the stack. The 'toString' operation returns a string representation of the stack.
- * @class
- * 
+ * with the <em>push</em> operation and removed from a stack with the <em>pop</em> operation. 
+ * The element at the top of the stack may be viewed with the <em>peek</em> operation; this operation 
+ * returns the element without removing it from the stack. The <em>clear</em> operation deletes
+ * the contents of the stack. The <em>getLength</em> operation returns the length (number of elements 
+ * contained) in the stack. The <em>toString</em> operation returns a string representation of the stack.
  */
 
 var Stack = (function() {

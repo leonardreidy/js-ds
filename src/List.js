@@ -23,7 +23,7 @@
 var List = (function () {
 
 	/**
-	 * Constructor declares and/or initialises list
+	 * Constructor declares and/or initialises List
 	 * @constructor
 	 */
 	function List() {

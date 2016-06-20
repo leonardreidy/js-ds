@@ -4,20 +4,23 @@
 
  /**
  * @class
- * A stack is essentially a list of data elements which may be accessed at only one end. 
- * Stacks are last-in, first-out (LIFO) data structures. Elements may be added to a stack
- * with the <em>push</em> operation and removed from a stack with the <em>pop</em> operation. 
- * The element at the top of the stack may be viewed with the <em>peek</em> operation; this operation 
- * returns the element without removing it from the stack. The <em>clear</em> operation deletes
- * the contents of the stack. The <em>getLength</em> operation returns the length (number of elements 
- * contained) in the stack. The <em>toString</em> operation returns a string representation of the stack.
+ * A <em>Stack</em> is essentially a list of data elements which may be accessed at only one end. 
+ * Stacks are last-in, first-out (LIFO) data structures. A Stack <em>ADT</em> includes the 
+ * following operations:
+ * <ul>
+ * <li><em>clear</em> - to delete the contents of the Stack;</li>
+ * <li><em>getLength</em> - to get the number of elements contained in the Stack;</li>
+ * <li><em>peek</em> - to peek at the element at the top of the Stack;</li>
+ * <li><em>pop</em> - to remove elements from the top of the Stack;</li>
+ * <li><em>push</em> - to add elements to the top of Stack;</li>
+ * <li><em>toString</em> - to get a string representation of the Stack;</li>
+ * </ul>
  */
-
 var Stack = (function() {
 
 	/**
-	 * Constructor function declares and/or intialises stack properties
 	 * @constructor
+	 * @description  Create and initialise new Stack object
 	 */
 	function Stack() {	
 		this.datastore = []; // An array is the underlying data structure
@@ -32,7 +35,7 @@ var Stack = (function() {
 	 * onto the stack it is stored in the top position identified by the top 
 	 * variable and the latter is incremented so that the new top is the next
 	 * vacant position in the array. 
-	 * @param element {*} Element to be added to stack
+	 * @param {*} element Element to be added to stack
 	 */
 	Stack.prototype.push = function(element) {
 		this.datastore[this.top++] = element;

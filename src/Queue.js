@@ -6,19 +6,23 @@
  * @class
  * A queue is an ordered list. Queues are first-in first-out (FIFO) data structures. 
  * Data are inserted into a queue at the back of the list and removed from the front. 
- * Elements may be added to a queue with the 'enqueue' operation and removed from a 
- * queue with the 'dequeue' operation. The back and front of a queue may be accessed
- * with the 'back' and 'front' methods, which are analogous to the 'peek' method of 
- * a stack. The 'clear' operation deletes the underlying datastore then declares and 
- * reinitialises the queue. The 'getLength' operation gets the number of elements in 
- * a queue. The 'isEmpty' operation determines whether or not a queue is empty. The 
- * 'toString' operation returns a string representation of the queue. 
+ * A Queue <em>ADT</em> includes the following operations:
+ * <ul>
+ * <li><em>enqueue</em> - to add an element to the queue;</li>
+ * <li><em>dequeue</em> - to remove an element from a queue;</li>
+ * <li><em>back</em> - to get the element at the back of the queue (analogous to peek);</li>
+ * <li><em>front</em> - to get the element at the front of the queue (analogous to peek);</li>
+ * <li><em>clear</em> - to clear or empty the queue;</li>
+ * <li><em>getLength</em> - to get the number of elements in the queue;</li>
+ * <li><em>isEmpty</em> - to determine whether or not a given queue is empty (contains no elements); and</li>
+ * <li><em>toString</em> - to get a string representation of the queue.</li>
+ * </ul>
  */
 var Queue = (function () {
 
 	/**
-     * Declare and/or initialise queue and offset
      * @constructor
+     * @description  Create and initialise new Queue object.
      */
     function Queue() {
     	// delare and/or initialise queue and offset
@@ -27,10 +31,10 @@ var Queue = (function () {
     }
 
     /**
-     * @memberOf Queue
+     * @memberOf  Queue
      * @instance
-     * @method getLength
-     * @description Get the length of the queue.
+     * @method  getLength
+     * @description  Get the length of the queue.
      * @return {number} Return the length/number of elements in the queue
      */
     Queue.prototype.getLength = function () {
@@ -116,7 +120,7 @@ var Queue = (function () {
      * @memberOf  Queue
      * @instance
      * @method  back
-     * @description  Get the element at the back of the queue without dequeueing it
+     * @description  Get the element at the back of the queue without dequeueing it.
      * @return {*} Return the element at the back of the queue, or undefined if the queue is empty
      */
     Queue.prototype.back = function() {
@@ -127,7 +131,7 @@ var Queue = (function () {
      * @memberOf  Queue
      * @instance
      * @method  toString
-     * @description Get a string representation of the queue
+     * @description  Get a string representation of the queue.
      * @return {string} Return string representation of the queue (using Object.prototype.toString())
      */
     Queue.prototype.toString = function() {

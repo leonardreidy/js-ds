@@ -180,18 +180,23 @@ var Dictionary = (function() {
     /**
      * @memberOf  Dictionary
      * @instance
-     * @method 
-     * @description  Get a string representation of the dictionary.
-     * @return {string} A string representation of the dictionary
+     * @method  toString
+     * @description  Get a key-sorted string representation of the dictionary.
+     * @return {string} A key-sorted string representation of the dictionary
      */
     Dictionary.prototype.toString = function() {
         var outStr = "";
         var key;
-        for(key in this.table) {
-            outStr += key + ": " + this.table[key] + ", ";
+        var keys = Object.keys(this.table).sort();
+        for(key in keys) {
+            outStr += keys[key] + ": " + this.table[keys[key]] + ", ";
         }
         return outStr.slice(0, -2); // trim the last comma and space and return to caller
     };
+
+    /** Auxiliary Functions  */
+
+
 
     return Dictionary;
 

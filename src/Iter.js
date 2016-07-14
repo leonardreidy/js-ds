@@ -15,11 +15,17 @@
  * <li><em>reset</em> - to reset the references used to traverse the Iter;</li>
  * <li><em>each</em> - to iterate over the elements of the Iter and execute a callback function against each;</li>
  * </ul>
+ * 
  * This class is not a general purpose implementation. It will return unexpected results if
  * it is used on any collection or object that nests other collections or objects. It is best
  * suited to Strings, Arrays, and simple collections of key/value pairs where both key and value
  * are 'primitives' like strings and numbers. In the current context, it serves as a helper
  * class for the Dictionary data structure.
+ *
+ * Note that if the next() method is called on a freshly minted Iter object, it will return the first element
+ * in the Iter object. If you wish to proceed on the assumption that the iterations will start from the first 
+ * element, 'initialise' the iter with the first() call. The decision to define the Iter object this way is
+ * consistent with the ES6 implementation of iterators, and it is also true for other languages. 
  */
 var Iter = (function() {
 

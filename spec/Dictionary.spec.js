@@ -157,7 +157,7 @@ describe("Dictionary", function() {
         dict.put("age", "unknown");
         dict.put("occupation", "developer");
         stringRep = dict.toString();
-        expect(stringRep).toEqual("name: Crouglas Dockford, age: unknown, occupation: developer");
+        expect(stringRep).toEqual("age: unknown, name: Crouglas Dockford, occupation: developer");
     });
 
 });

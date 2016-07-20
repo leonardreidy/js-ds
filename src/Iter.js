@@ -9,11 +9,11 @@
  * provide methods that permit the traversal of a collection. An Iter (iterator) ADT includes
  * the following operations: 
  * <ul>
- * <li><em>first</em> - to get the first element of the Iter;</li>
- * <li><em>next</em> - to get the next element of the Iter;</li>
+ * <li><em>first</em>   - to get the first element of the Iter;</li>
+ * <li><em>next</em>    - to get the next element of the Iter;</li>
  * <li><em>hasNext</em> - to determine whether or not the Iter has a next element;</li>
- * <li><em>reset</em> - to reset the references used to traverse the Iter;</li>
- * <li><em>each</em> - to iterate over the elements of the Iter and execute a callback function against each;</li>
+ * <li><em>reset</em>   - to reset the references used to traverse the Iter;</li>
+ * <li><em>each</em>    - to iterate over the elements of the Iter and execute a callback function against each;</li>
  * </ul>
  * 
  * This class is not a general purpose implementation. It will return unexpected results if

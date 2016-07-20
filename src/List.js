@@ -7,21 +7,21 @@
  * A <em>List</em> is an ordered collection of data elements. A List <em>ADT</em> includes 
  * the following operations: 
  * <ul>
- * <li><em>append</em> - to add new elements to the end of a list;</li>
- * <li><em>back</em> - to move to the back of the list;</li>
- * <li><em>clear</em> - to remove the list elements en masse;</li>
- * <li><em>contains</em> - to determine whether the list contains a given element;</li>
- * <li><em>currPos</em> - to get the current position in the list;</li>
- * <li><em>front</em> - to move to the front of the list;</li>
- * <li><em>getCurrent</em> - to get the current element in the list;</li>
- * <li><em>insert</em> - to insert elements into the list after an existing element or at the beginning of the list;</li>
- * <li><em>isEmpty</em> - to check whether the list contains any elements;</li>
- * <li><em>length</em> - to get the number of elements in the list;</li>
- * <li><em>moveTo</em> - to move to any arbitrary location in the list;</li>
- * <li><em>next</em> - to traverse the list from left to right;</li>
- * <li><em>prev</em> - to move to the previous element in the list;</li>
- * <li><em>remove</em> - to remove a given element from the list;</li>
- * <li><em>toString</em> - to get a string representation of the list;</li>
+ * <li><em>append</em> 		- to add new elements to the end of a list;</li>
+ * <li><em>back</em> 		- to move to the back of the list;</li>
+ * <li><em>clear</em> 		- to remove the list elements en masse;</li>
+ * <li><em>contains</em> 	- to determine whether the list contains a given element;</li>
+ * <li><em>currPos</em> 	- to get the current position in the list;</li>
+ * <li><em>front</em> 		- to move to the front of the list;</li>
+ * <li><em>getCurrent</em> 	- to get the current element in the list;</li>
+ * <li><em>insert</em> 		- to insert elements into the list after an existing element or at the beginning of the list;</li>
+ * <li><em>isEmpty</em> 	- to check whether the list contains any elements;</li>
+ * <li><em>length</em> 		- to get the number of elements in the list;</li>
+ * <li><em>moveTo</em> 		- to move to any arbitrary location in the list;</li>
+ * <li><em>next</em> 		- to traverse the list from left to right;</li>
+ * <li><em>prev</em> 		- to move to the previous element in the list;</li>
+ * <li><em>remove</em> 		- to remove a given element from the list;</li>
+ * <li><em>toString</em> 	- to get a string representation of the list;</li>
  * </ul>
  */
 

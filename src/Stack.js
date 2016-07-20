@@ -8,12 +8,12 @@
  * Stacks are last-in, first-out (LIFO) data structures. A Stack <em>ADT</em> includes the 
  * following operations:
  * <ul>
- * <li><em>clear</em> - to delete the contents of the Stack;</li>
- * <li><em>getLength</em> - to get the number of elements contained in the Stack;</li>
- * <li><em>peek</em> - to peek at the element at the top of the Stack;</li>
- * <li><em>pop</em> - to remove elements from the top of the Stack;</li>
- * <li><em>push</em> - to add elements to the top of Stack;</li>
- * <li><em>toString</em> - to get a string representation of the Stack;</li>
+ * <li><em>clear</em> 		- to delete the contents of the Stack;</li>
+ * <li><em>getLength</em> 	- to get the number of elements contained in the Stack;</li>
+ * <li><em>peek</em> 		- to peek at the element at the top of the Stack;</li>
+ * <li><em>pop</em> 		- to remove elements from the top of the Stack;</li>
+ * <li><em>push</em> 		- to add elements to the top of Stack;</li>
+ * <li><em>toString</em> 	- to get a string representation of the Stack;</li>
  * </ul>
  */
 var Stack = (function() {

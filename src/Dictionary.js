@@ -9,16 +9,16 @@
  * and values defines a <em>mapping</em>. Dictionaries are also known as <em>associative arrays</em> 
  * or <em>maps</em>. A Dictionary <em>ADT</em> includes the following operations: 
  * <ul>
- * <li><em>getSize</em> - to get the size of the data structure;</li>
- * <li><em>isEmpty</em> - to check to see if it is empty;</li>
- * <li><em>put</em> - to put or add new entries to the dictionary;</li>
- * <li><em>get</em> - to get the value associated with a given key;</li> 
- * <li><em>remove</em> - to remove entries from the dictionary;</li> 
- * <li><em>getEntries</em> - to get all entries in the dictionary
+ * <li><em>getSize</em>     - to get the size of the data structure;</li>
+ * <li><em>isEmpty</em>     - to check to see if it is empty;</li>
+ * <li><em>put</em>         - to put or add new entries to the dictionary;</li>
+ * <li><em>get</em>         - to get the value associated with a given key;</li> 
+ * <li><em>remove</em>      - to remove entries from the dictionary;</li> 
+ * <li><em>getEntries</em>  - to get all entries in the dictionary
  * (as an iterable or iterator);</li> 
- * <li><em>getValues</em> - to get all values in the dictionary;</li> 
- * <li><em>getKeys</em> - to get all keys in the dictionary;</li> and
- * <li><em>toString</em> - to represent the entries in the dictionary
+ * <li><em>getValues</em>   - to get all values in the dictionary;</li> 
+ * <li><em>getKeys</em>     - to get all keys in the dictionary;</li> and
+ * <li><em>toString</em>    - to represent the entries in the dictionary
  * as a string and/or to display the contents of the dictionary.
  * </ul>
  * Most modern browsers support Maps (associative arrays/dictionaries), 

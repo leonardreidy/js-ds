@@ -8,14 +8,14 @@
  * Data are inserted into a queue at the back of the list and removed from the front. 
  * A Queue <em>ADT</em> includes the following operations:
  * <ul>
- * <li><em>enqueue</em> - to add an element to the queue;</li>
- * <li><em>dequeue</em> - to remove an element from a queue;</li>
- * <li><em>back</em> - to get the element at the back of the queue (analogous to peek);</li>
- * <li><em>front</em> - to get the element at the front of the queue (analogous to peek);</li>
- * <li><em>clear</em> - to clear or empty the queue;</li>
- * <li><em>getLength</em> - to get the number of elements in the queue;</li>
- * <li><em>isEmpty</em> - to determine whether or not a given queue is empty (contains no elements); and</li>
- * <li><em>toString</em> - to get a string representation of the queue.</li>
+ * <li><em>enqueue</em>     - to add an element to the queue;</li>
+ * <li><em>dequeue</em>     - to remove an element from a queue;</li>
+ * <li><em>back</em>        - to get the element at the back of the queue (analogous to peek);</li>
+ * <li><em>front</em>       - to get the element at the front of the queue (analogous to peek);</li>
+ * <li><em>clear</em>       - to clear or empty the queue;</li>
+ * <li><em>getLength</em>   - to get the number of elements in the queue;</li>
+ * <li><em>isEmpty</em>     - to determine whether or not a given queue is empty (contains no elements); and</li>
+ * <li><em>toString</em>    - to get a string representation of the queue.</li>
  * </ul>
  */
 var Queue = (function () {

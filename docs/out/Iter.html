@@ -30,7 +30,7 @@
     
         <h2>Iter</h2>
         
-            <div class="class-description">An <em>Iter</em> object is an iterator. Iterators have a reference to a given iterable collection and the current position of the iterator with respect to the latter. Iterators provide methods that permit the traversal of a collection. An Iter (iterator) ADT includesthe following operations: <ul><li><em>first</em> - to get the first element of the Iter;</li><li><em>next</em> - to get the next element of the Iter;</li><li><em>hasNext</em> - to determine whether or not the Iter has a next element;</li><li><em>reset</em> - to reset the references used to traverse the Iter;</li><li><em>each</em> - to iterate over the elements of the Iter and execute a callback function against each;</li></ul>This class is not a general purpose implementation. It will return unexpected results ifit is used on any collection or object that nests other collections or objects. It is bestsuited to Strings, Arrays, and simple collections of key/value pairs where both key and valueare 'primitives' like strings and numbers. In the current context, it serves as a helperclass for the Dictionary data structure.</div>
+            <div class="class-description">An <em>Iter</em> object is an iterator. Iterators have a reference to a given iterable collection and the current position of the iterator with respect to the latter. Iterators provide methods that permit the traversal of a collection. An Iter (iterator) ADT includesthe following operations: <ul><li><em>first</em>   - to get the first element of the Iter;</li><li><em>next</em>    - to get the next element of the Iter;</li><li><em>hasNext</em> - to determine whether or not the Iter has a next element;</li><li><em>reset</em>   - to reset the references used to traverse the Iter;</li><li><em>each</em>    - to iterate over the elements of the Iter and execute a callback function against each;</li></ul>This class is not a general purpose implementation. It will return unexpected results ifit is used on any collection or object that nests other collections or objects. It is bestsuited to Strings, Arrays, and simple collections of key/value pairs where both key and valueare 'primitives' like strings and numbers. In the current context, it serves as a helperclass for the Dictionary data structure.Note that if the next() method is called on a freshly minted Iter object, it will return the first elementin the Iter object. If you wish to proceed on the assumption that the iterations will start from the first element, 'initialise' the iter with the first() call. The decision to define the Iter object this way isconsistent with the ES6 implementation of iterators, and it is also true for other languages.</div>
         
     
 </header>
@@ -91,7 +91,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line24">line 24</a>
+        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -322,7 +322,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line105">line 105</a>
+        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line111">line 111</a>
     </li></ul></dd>
     
 
@@ -404,7 +404,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line39">line 39</a>
+        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -508,7 +508,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line74">line 74</a>
+        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -612,7 +612,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line51">line 51</a>
+        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -716,7 +716,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line94">line 94</a>
+        <a href="Iter.js.html">Iter.js</a>, <a href="Iter.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -758,13 +758,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Dictionary.html">Dictionary</a></li><li><a href="Iter.html">Iter</a></li><li><a href="List.html">List</a></li><li><a href="Queue.html">Queue</a></li><li><a href="Stack.html">Stack</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Dictionary.html">Dictionary</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="Iter.html">Iter</a></li><li><a href="List.html">List</a></li><li><a href="Queue.html">Queue</a></li><li><a href="Set.html">Set</a></li><li><a href="Stack.html">Stack</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Jun 20 2016 22:59:34 GMT+0100 (GMT Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 20 2016 19:46:28 GMT+0100 (GMT Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

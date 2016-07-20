@@ -44,24 +44,26 @@
  * sets A and B includes those elements which belong to A or B but not to both.
  * A set &lt;em>ADT&lt;/em> includes the following operations:
  * &lt;ul>
- * &lt;li>&lt;em>insert&lt;/em>       - insert a new data element&lt;/li>
- * &lt;li>&lt;em>remove&lt;/em>       - remove an existing data element&lt;/li>
- * &lt;li>&lt;em>getLength&lt;/em>    - get the number of elements in the set&lt;/li>
- * &lt;li>&lt;em>union&lt;/em>        - get the union of two sets&lt;/li>
- * &lt;li>&lt;em>intersection&lt;/em> - get the intersection of two sets&lt;/li>
- * &lt;li>&lt;em>subset&lt;/em>       - check to see if a given set is a subset of the set&lt;/li>
- * &lt;li>&lt;em>difference&lt;/em>   - get the difference of two sets&lt;/li>
- * &lt;li>&lt;em>toString&lt;/em>     - get a string representation of the set&lt;/li>
- *
+ * &lt;li>&lt;em>insert&lt;/em>       - insert a new data element;&lt;/li>
+ * &lt;li>&lt;em>remove&lt;/em>       - remove an existing data element;&lt;/li>
+ * &lt;li>&lt;em>getLength&lt;/em>    - get the number of elements in the set;&lt;/li>
+ * &lt;li>&lt;em>union&lt;/em>        - get the union of two sets;&lt;/li>
+ * &lt;li>&lt;em>intersection&lt;/em> - get the intersection of two sets;&lt;/li>
+ * &lt;li>&lt;em>subset&lt;/em>       - check to see if a given set is a subset of the set;&lt;/li>
+ * &lt;li>&lt;em>difference&lt;/em>   - get the difference of two sets;&lt;/li>
+ * &lt;li>&lt;em>toString&lt;/em>     - get a string representation of the set;&lt;/li>
+ * &lt;/ul>
+ * &lt;br/>
  * Note that the class contains some duplication for conceptual and practical 
  * reasons. On the one hand, it may be argued that set operations belong to the
  * domain of discourse of sets, rather than being operations that belong to any 
  * given set. That is, mathematical sets in and of themselves don't perform operations. 
  * So, it may be argued that it is somewhat unintuitive to invoke operations on set 
- * objects. Nonetheless, object-oriented programming consists in a mapping from a
+ * objects. On the other hand, object-oriented programming consists in a mapping from a
  * problem domain to a solution domain that is not or rather need not be one-to-one.
- * As such, it makes sense to respect conventional object-oriented design principles
- * and provide an implementation that preserves the object/message conceptual framework!
+ * From this point of view, it makes sense to respect conventional object-oriented design 
+ * principles and provide an implementation that preserves the object/message conceptual 
+ * framework!
  */
 var Set = (function() {
 
@@ -113,18 +115,27 @@ var Set = (function() {
      * @return {Set} A new set containing the intersection of the given sets
      */
     Set.intersection = function(left, right) {
-            var temp = new Set();
-            if(left instanceof Set &amp;&amp; right instanceof Set) {
-                for(var i = 0; i &lt; right.datastore.length; i++) {
-                    if(left.contains(right.datastore[i])) {
-                        temp.insert(right.datastore[i]);
-                    }
+        var temp = new Set();
+        switch(arguments.length) {
+            case 1: 
+                if(left instanceof Set) {
+                    temp = left;
                 }
-            }
-            else {
-                temp = undefined;
-            }
-            return temp;
+                break;
+            case 2: 
+                if(left instanceof Set &amp;&amp; right instanceof Set) {
+                    for(var i = 0; i &lt; right.datastore.length; i++) {
+                        if(left.contains(right.datastore[i])) {
+                            temp.insert(right.datastore[i]);
+                        }
+                    }
+                } else {
+                    temp = undefined;
+                }
+            break;
+            default: temp = undefined;
+        }
+        return temp;
     }
     /**
      * @memberOf  Set
@@ -137,12 +148,20 @@ var Set = (function() {
      */
     Set.difference = function(left, right) {
         var temp = new Set();
-            for(var i = 0; i &lt; left.datastore.length; i++) {
-                if(!(right.contains(left.datastore[i]))) {
-                    temp.insert(left.datastore[i]);
+        switch(arguments.length) {
+            case 2: 
+            if(left instanceof Set &amp;&amp; right instanceof Set) {
+                for(var i = 0; i &lt; left.datastore.length; i++) {
+                    if(!(right.contains(left.datastore[i]))) {
+                        temp.insert(left.datastore[i]);
+                    }
                 }
             }
-            return temp;   
+            default: // leave temp as is - the difference of a set and itself is the null set 
+                     // and our empty set is the closest analogue
+        }
+            
+        return temp;   
     }
 
     // Set prototype
@@ -327,7 +346,7 @@ var Set = (function() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 20 2016 19:46:28 GMT+0100 (GMT Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 20 2016 20:08:28 GMT+0100 (GMT Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

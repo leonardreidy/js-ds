@@ -1,6 +1,6 @@
 # js-ds
 
-A simple Object-Oriented JavaScript data structures library. 
+A simple Object-Oriented JavaScript data structures library in a broadly pseudoclassical style. 
 
 ## Installation
 

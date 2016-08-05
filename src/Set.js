@@ -5,7 +5,7 @@
 /**
  * @class 
  * A <em>Set</em> is an unordered collection of unique elements. A set
- * with no elements is called the empty set. The universe is the set of all 
+ * with no elements is called the empty or null set. The universe is the set of all 
  * elements of interest (otherwise known as the universal set). Any two sets
  * are equal if and only if they contain precisely the same members. A set A 
  * is a subset of some set B if all of the members of A are also members of B. 
@@ -23,6 +23,7 @@
  * <li><em>intersection</em> - get the intersection of two sets;</li>
  * <li><em>subset</em>       - check to see if a given set is a subset of the set;</li>
  * <li><em>difference</em>   - get the difference of two sets;</li>
+ * <li><em>symmetric difference</em> - get the symmetric difference of two sets;</li>
  * <li><em>toString</em>     - get a string representation of the set;</li>
  * </ul>
  * <br/>
@@ -35,7 +36,9 @@
  * problem domain to a solution domain that is not or rather need not be one-to-one.
  * From this point of view, it makes sense to respect conventional object-oriented design 
  * principles and provide an implementation that preserves the object/message conceptual 
- * framework!
+ * framework! From an implementation point of view, this means that the Set class offers
+ * an api that includes static methods representing common set operations and instance 
+ * methods that mirror them, even at the risk of some redundancy.
  */
 var Set = (function() {
 
@@ -112,27 +115,24 @@ var Set = (function() {
     /**
      * @memberOf  Set
      * @static
-     * @method  difference
-     * @description  Get the (symmetric) difference of any two sets.
+     * @method  sDifference
+     * @description  Get the symmetric difference of any two sets.
      * @param  {Set} left Any given set
      * @param  {Set} right Any other given set
-     * @return {Set} A new set containing the difference of the given sets
+     * @return {Set} A new set containing the symmetric difference of the given sets
      */
-    Set.difference = function(left, right) {
+    Set.sDifference = function(left, right) {
+
         var temp = new Set();
         var i;
 
         switch(arguments.length) {
 
-            case 0:
-            temp = undefined;
-            break;
-
+            case 0: temp = undefined; break;
             case 1: 
             // leave temp as is - the difference of a set and itself is the null set 
             // and our empty set is about as close as we can get to the null set (for now)
             break;
-
             case 2: 
             if(left instanceof Set && right instanceof Set) {
 
@@ -150,11 +150,26 @@ var Set = (function() {
                 }
                 
             }
+            else {
+                temp = undefined;
+            }
             break;
             default: temp = undefined;
         }
             
         return temp;   
+    }
+
+    /**
+     * @memberOf  Set
+     * @static
+     * @method  difference
+     * @param  {Set}  left  Any given set
+     * @param  {Set}  right Any other given set
+     * @return {Set}  A new set containing the relative complement of the given sets
+     */
+    Set.difference = function(left, right) {
+        // [TODO]   Implement relative complement
     }
 
     // Set prototype
@@ -317,6 +332,18 @@ var Set = (function() {
                 }
             }
             return temp;
+        }
+
+        /**
+         * @memberOf  Set
+         * @instance
+         * @method  sDifference
+         * @description  Get the relative complement with respect to this set and the given set
+         * @param {Set} set Any given set
+         * @return {Set} The set containing the relative complement of this set and the given set
+         */
+        sDifference: function(set) {
+            // [TODO] Implement symmetric difference instance method
         }
 
     };

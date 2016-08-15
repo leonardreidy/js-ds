@@ -62,15 +62,16 @@ var Set = (function() {
      */
     Set.union = function(left, right) {
         var temp = new Set(); 
+        var i;
             switch(arguments.length) {
                 case 1: 
                     temp = left; 
                 break;
                 case 2: 
-                    for(var i = 0; i < left.datastore.length; i++) {
+                    for(i = 0; i < left.datastore.length; i++) {
                         temp.insert(left.datastore[i]);
                     }
-                    for(var i = 0; i < right.datastore.length; i++) {
+                    for(i = 0; i < right.datastore.length; i++) {
                         if(!(temp.contains(right.datastore[i]))) {
                             temp.datastore.push(right.datastore[i]);
                         }
@@ -92,6 +93,7 @@ var Set = (function() {
      */
     Set.intersection = function(left, right) {
         var temp = new Set();
+        var i;
         switch(arguments.length) {
             case 1: 
                 if(left instanceof Set) {
@@ -100,7 +102,7 @@ var Set = (function() {
                 break;
             case 2: 
                 if(left instanceof Set && right instanceof Set) {
-                    for(var i = 0; i < right.datastore.length; i++) {
+                    for(i = 0; i < right.datastore.length; i++) {
                         if(left.contains(right.datastore[i])) {
                             temp.insert(right.datastore[i]);
                         }
@@ -117,13 +119,13 @@ var Set = (function() {
     /**
      * @memberOf  Set
      * @static
-     * @method  sDifference
+     * @method  symmDifference
      * @description  Get the symmetric difference of any two sets.
      * @param  {Set} left Any given set
      * @param  {Set} right Any other given set
      * @return {Set} A new set containing the symmetric difference of the given sets
      */
-    Set.sDifference = function(left, right) {
+    Set.symmDifference = function(left, right) {
 
         var temp = new Set();
         var i;
@@ -168,10 +170,18 @@ var Set = (function() {
      * @method  difference
      * @param  {Set}  left  Any given set
      * @param  {Set}  right Any other given set
-     * @return {Set}  A new set containing the relative complement of the given sets
+     * @return {Set}  A new set containing the relative complement or left\right
      */
     Set.difference = function(left, right) {
-        // [TODO]   Implement relative complement
+        var temp = new Set();
+        var i;
+        for (i = 0; i < left.datastore.length; i++) {
+            if(!(right.contains(left.datastore[i]))) {
+                temp.insert(left.datastore[i]);
+            }
+        }
+
+        return temp;
     }
 
     // Set prototype
@@ -253,11 +263,12 @@ var Set = (function() {
          */
         union: function(set) {
             var temp = new Set(); 
+            var i;
             if(set instanceof Set) {
-                for(var i = 0; i < this.datastore.length; i++) {
+                for(i = 0; i < this.datastore.length; i++) {
                     temp.insert(this.datastore[i]);
                 }
-                for(var i = 0; i < set.datastore.length; i++) {
+                for(i = 0; i < set.datastore.length; i++) {
                     if(!(temp.contains(set.datastore[i]))) {
                         temp.datastore.push(set.datastore[i]);
                     }
@@ -278,8 +289,9 @@ var Set = (function() {
          */
         intersection: function(set) {
             var temp = new Set();
+            var i;
             if( set instanceof Set) {
-                for(var i = 0; i < this.datastore.length; i++) {
+                for(i = 0; i < this.datastore.length; i++) {
                     if(set.contains(this.datastore[i])) {
                         temp.insert(this.datastore[i]);
                     }
@@ -340,7 +352,7 @@ var Set = (function() {
                 }
             }
             return temp;
-        }
+        },
 
         /**
          * @memberOf  Set
@@ -352,6 +364,7 @@ var Set = (function() {
          */
         sDifference: function(set) {
             // [TODO] Implement symmetric difference instance method
+            return "TODO";
         }
 
     };

@@ -38,216 +38,219 @@ var List = (function () {
 
 	}
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  append
-	 * @description  Append an element to the list.
-	 * @param  {*} element Element to be appended
-	 */
-	List.prototype.append = function(element) {
-		this.datastore[this.size++] = element;
-	};
+	List.prototype = {
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  back
-	 * @description  Set the position to facilitate traversal from the back of the list.
-	 */
-	List.prototype.back = function() {
-		this.pos = this.size-1;
-	};
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  append
+		 * @description  Append an element to the list.
+		 * @param  {*} element Element to be appended
+		 */
+		append: function(element) {
+			this.datastore[this.size++] = element;
+		}, 
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  clear
-	 * @description  Remove all elements from the list.
-	 */
-	List.prototype.clear = function() {
-		delete this.datastore;
-		this.datastore = [];
-		this.size = this.pos = 0;
-	};
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  back
+		 * @description  Set the position to facilitate traversal from the back of the list.
+		 */
+		back: function() {
+			this.pos = this.size-1;
+		}, 
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  contains
-	 * @description  Determine whether or not a list contains a given element. 
-	 * @param  {*} element The given element of interest
-	 * @return {boolean}  True if the list contains the element, false otherwise
-	 */
-	List.prototype.contains = function(element) {
-		for(var i = 0; i < this.datastore.length; ++i) {
-				if(this.datastore[i] == element) {
-					return true;
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  clear
+		 * @description  Remove all elements from the list.
+		 */
+		clear: function() {
+			delete this.datastore;
+			this.datastore = [];
+			this.size = this.pos = 0;
+		}, 
+
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  contains
+		 * @description  Determine whether or not a list contains a given element. 
+		 * @param  {*} element The given element of interest
+		 * @return {boolean}  True if the list contains the element, false otherwise
+		 */
+		contains: function(element) {
+			for(var i = 0; i < this.datastore.length; ++i) {
+					if(this.datastore[i] == element) {
+						return true;
+					}
 				}
-			}
-		return false;
-	};
+			return false;
+		},
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  currPos
-	 * @description  Get the current position in the list.
-	 * @return {number} The index of the current position in the list
-	 */
-	List.prototype.currPos = function() {
-		return this.pos;
-	};
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  currPos
+		 * @description  Get the current position in the list.
+		 * @return {number} The index of the current position in the list
+		 */
+		currPos: function() {
+			return this.pos;
+		}, 
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  find
-	 * @description  Find the given element in the list.
-	 * @param  {*} element The element to be found
-	 * @return {number}  The index of the given element or -1 if element not found
-	 */
-	List.prototype.find = function(element) {
-		for(var i = 0; i < this.datastore.length; ++i) {
-				if(this.datastore[i] == element) {
-					return i;
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  find
+		 * @description  Find the given element in the list.
+		 * @param  {*} element The element to be found
+		 * @return {number}  The index of the given element or -1 if element not found
+		 */
+		find: function(element) {
+			for(var i = 0; i < this.datastore.length; ++i) {
+					if(this.datastore[i] == element) {
+						return i;
+					}
 				}
-			}
-			return -1;
-	};
+				return -1;
+		},
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  front
-	 * @description  Set the position to facilitate traversal from the front of the list.
-	 */
-	List.prototype.front = function() {
-		this.pos = 0;
-	};
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  front
+		 * @description  Set the position to facilitate traversal from the front of the list.
+		 */
+		front: function() {
+			this.pos = 0;
+		}, 
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  getCurrent
-	 * @description  Get the current element of the list.
-	 * @return {*} The current element of the list
-	 */
-	List.prototype.getCurrent = function() {
-		return this.datastore[this.pos];
-	};
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  getCurrent
+		 * @description  Get the current element of the list.
+		 * @return {*} The current element of the list
+		 */
+		getCurrent: function() {
+			return this.datastore[this.pos];
+		}, 
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  insert
-	 * @description  Insert an element in the list.
-	 * @param  {*} element The element to be inserted
-	 * @param  {*} after The element after which the given element will be inserted
-	 */
-	List.prototype.insert = function(element, after) {
-		var inPos = this.find(after);
-		if (inPos > -1) {
-			this.datastore.splice(inPos+1, 0, element);
-			++this.size;
-			return true;
-		}
-		return false;
-	};
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  isEmpty
-	 * @description  Determine whether or not the list is empty.
-	 * @return {boolean} True if empty, false if not
-	 */
-	List.prototype.isEmpty = function() {
-		return (this.datastore.length === 0);
-
-	};
-
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  length
-	 * @description  Get the number of elements in the list.
-	 * @return {number} The number (integer) of elements in the list
-	 */
-	List.prototype.length = function() {
-		return this.size;
-	};
-
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  moveTo
-	 * @description  Move to the given position in the list.
-	 * @param  {number} position The index associated with the new position in the list
-	 */
-	List.prototype.moveTo = function(position) {
-		if(typeof(position) === "number" && !(position >= this.datastore.length)) {
-				this.pos = position;
-				return 1;
-			}
-			return -1;
-	};
-
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  next
-	 * @description  Move the current position to the next element.
-	 * @return {*} The next element
-	 */
-	List.prototype.next = function() {
-		if(this.pos < this.size-1) {
-				return this.datastore[++this.pos];
-			}
-			return -1;
-	};
-
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  prev
-	 * @description  Move the current position to the previous element.
-	 * @return {*} The previous element or -1 if there is no previous element
-	 */
-	List.prototype.prev = function() {
-		if(this.pos > 0) {
-				return this.datastore[--this.pos];
-			}
-	};
-
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  remove
-	 * @description  Remove a given element from the list.
-	 * @param  {*} element Element to be removed
-	 * @return {boolean} True if the item is found and removed, false otherwise
-	 */
-	List.prototype.remove = function(element) {
-		var foundAt = this.find(element);
-			if(foundAt > -1) {
-				this.datastore.splice(foundAt, 1);
-				--this.size;
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  insert
+		 * @description  Insert an element in the list.
+		 * @param  {*} element The element to be inserted
+		 * @param  {*} after The element after which the given element will be inserted
+		 */
+		insert: function(element, after) {
+			var inPos = this.find(after);
+			if (inPos > -1) {
+				this.datastore.splice(inPos+1, 0, element);
+				++this.size;
 				return true;
 			}
 			return false;
-	};
+		}, 
 
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  isEmpty
+		 * @description  Determine whether or not the list is empty.
+		 * @return {boolean} True if empty, false if not
+		 */
+		isEmpty: function() {
+			return (this.datastore.length === 0);
 
-	/**
-	 * @memberOf  List
-	 * @instance
-	 * @method  toString
-	 * @description  Get a string representation of the list.
-     * @return {string} Return string representation of the list (using Object.prototype.toString())
-	 */
-	List.prototype.toString = function() {
-		return this.datastore.toString();
+		},
+
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  length
+		 * @description  Get the number of elements in the list.
+		 * @return {number} The number (integer) of elements in the list
+		 */
+		length: function() {
+			return this.size;
+		},
+
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  moveTo
+		 * @description  Move to the given position in the list.
+		 * @param  {number} position The index associated with the new position in the list
+		 */
+		moveTo: function(position) {
+			if(typeof(position) === "number" && !(position >= this.datastore.length)) {
+					this.pos = position;
+					return 1;
+				}
+				return -1;
+		},
+
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  next
+		 * @description  Move the current position to the next element.
+		 * @return {*} The next element
+		 */
+		next: function() {
+			if(this.pos < this.size-1) {
+					return this.datastore[++this.pos];
+				}
+				return -1;
+		},
+
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  prev
+		 * @description  Move the current position to the previous element.
+		 * @return {*} The previous element or -1 if there is no previous element
+		 */
+		prev: function() {
+			if(this.pos > 0) {
+					return this.datastore[--this.pos];
+				}
+		},
+
+		/**
+		 * @memberOf  List
+		 * @instance
+		 * @method  remove
+		 * @description  Remove a given element from the list.
+		 * @param  {*} element Element to be removed
+		 * @return {boolean} True if the item is found and removed, false otherwise
+		 */
+		remove: function(element) {
+			var foundAt = this.find(element);
+				if(foundAt > -1) {
+					this.datastore.splice(foundAt, 1);
+					--this.size;
+					return true;
+				}
+				return false;
+		},
+
+			/**
+			 * @memberOf  List
+			 * @instance
+			 * @method  toString
+			 * @description  Get a string representation of the list.
+		     * @return {string} Return string representation of the list (using Object.prototype.toString())
+			 */
+			toString: function() {
+				return this.datastore.toString();
+			}
 	};
 
 	return List;

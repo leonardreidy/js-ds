@@ -80,6 +80,7 @@ var Set = (function() {
             }
             return temp;
     }
+
     /**
      * @memberOf  Set
      * @static
@@ -112,6 +113,7 @@ var Set = (function() {
         }
         return temp;
     }
+
     /**
      * @memberOf  Set
      * @static
@@ -193,6 +195,7 @@ var Set = (function() {
                 return false;
             }
         }, 
+
         /**
          * @memberOf  Set
          * @instance
@@ -228,6 +231,7 @@ var Set = (function() {
                 return false;
             }
         }, 
+
         /**
          * @memberOf  Set
          * @instance
@@ -263,6 +267,7 @@ var Set = (function() {
             }
             return temp;
         },
+
         /**
          * @memberOf  Set
          * @instance
@@ -285,6 +290,7 @@ var Set = (function() {
             }
             return temp;
         }, 
+
         /**
          * @memberOf  Set
          * @instance
@@ -294,7 +300,8 @@ var Set = (function() {
          */
         getLength: function() {
             return this.datastore.length;
-        }, 
+        },
+
         /**
          * @memberOf  Set
          * @instance
@@ -316,6 +323,7 @@ var Set = (function() {
             }
             return true;
         },
+
         /**
          * @memberOf  Set
          * @instance
@@ -349,4 +357,5 @@ var Set = (function() {
     };
 
     return Set;
+    
 }());

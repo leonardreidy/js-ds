@@ -139,7 +139,6 @@ var List = (function () {
 			return this.datastore[this.pos];
 		}, 
 
-
 		/**
 		 * @memberOf  List
 		 * @instance

@@ -111,4 +111,5 @@ var Stack = (function() {
 	}
 
 	return Stack;
+	
 }());

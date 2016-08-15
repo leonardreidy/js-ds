@@ -143,4 +143,5 @@ var Queue = (function () {
     };
 
     return Queue;
+    
 }());

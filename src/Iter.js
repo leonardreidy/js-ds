@@ -42,85 +42,89 @@ var Iter = (function() {
             this.currVal;
     }
 
-    /**
-     * @memberOf  Iter
-     * @instance
-     * @method  first
-     * @description  Get first element of the current Iter.
-     * @return {*} The first element of the current Iter
-     */
-    Iter.prototype.first = function() {
-        this.reset();
-        return this.next();
-    };
+    Iter.prototype = {
 
-    /**
-     * @memberOf  Iter
-     * @instance
-     * @method  next
-     * @description  Get the next element in the collection as an array containing the key and value.
-     * @return {array} An array containing the key and value of the next element, or undefined
-     */
-    Iter.prototype.next = function() {
-        var keys;
-        // If the current collection is a string or an array, return the current element and increment the index variable
-        if(typeof this.collection === 'string' || 
-            Object.prototype.toString.call(this.collection) === '[object Array]') {
-            return this.collection[this.index++];
-        // else, get the keys of the collection, then get the current key, and the current value, and return an array with 
-        // the current key and the current value as the 0th and 1st elements of that array
-        } else {
-            keys = Object.keys(this.collection);
-            this.currKey = keys[this.current];
-            this.currVal = this.collection[keys[this.current++]];
-            return this.current <= keys.length ? [this.currKey, this.currVal] : undefined;
+        /**
+         * @memberOf  Iter
+         * @instance
+         * @method  first
+         * @description  Get first element of the current Iter.
+         * @return {*} The first element of the current Iter
+         */
+        first: function() {
+            this.reset();
+            return this.next();
+        },
+
+        /**
+         * @memberOf  Iter
+         * @instance
+         * @method  next
+         * @description  Get the next element in the collection as an array containing the key and value.
+         * @return {array} An array containing the key and value of the next element, or undefined
+         */
+        next: function() {
+            var keys;
+            // If the current collection is a string or an array, return the current element and increment the index variable
+            if(typeof this.collection === 'string' || 
+                Object.prototype.toString.call(this.collection) === '[object Array]') {
+                return this.collection[this.index++];
+            // else, get the keys of the collection, then get the current key, and the current value, and return an array with 
+            // the current key and the current value as the 0th and 1st elements of that array
+            } else {
+                keys = Object.keys(this.collection);
+                this.currKey = keys[this.current];
+                this.currVal = this.collection[keys[this.current++]];
+                return this.current <= keys.length ? [this.currKey, this.currVal] : undefined;
+            }
+        },
+        
+        /**
+         * @memberOf  Iter
+         * @instance
+         * @method  hasNext
+         * @description  Check whether the Iter has a next element.
+         * @return {boolean} True if the Iter has a next element, false otherwise
+         */
+        hasNext: function() {
+            // If the current collection is a string or an array, return true or false if the index is less than 
+            // the length of the collection
+            if(typeof this.collection === 'string' || 
+                Object.prototype.toString.call(this.collection) === '[object Array]') {
+                return this.index < this.collection.length;
+            }
+            // else return true or false if the index is less than the length of the array of the collections keys
+            else {
+                return this.current < Object.keys(this.collection).length;
+            }  
+        },
+
+        /**
+         * @memberOf  Iter
+         * @instance
+         * @method  reset
+         * @description  Reset the references used to traverse the Iter.
+         */
+        reset: function() {
+            this.index = 0;
+            this.current = 0;
+        }, 
+
+        /**
+         * @memberOf  Iter
+         * @instance
+         * @method  each
+         * @description  Iterate over all elements of the Iterator and execute a callback function for each.
+         * @param  {function} callbackFunc A callback function to execute against each element of the Iter
+         */
+        each: function(callbackFunc) {
+            var elem;
+            for(elem = this.first(); this.hasNext(); elem = this.next()) {
+                callbackFunc(elem);
+            }
+            callbackFunc(elem); // execute the callback function against the last element of the collection
         }
-    };
 
-    /**
-     * @memberOf  Iter
-     * @instance
-     * @method  hasNext
-     * @description  Check whether the Iter has a next element.
-     * @return {boolean} True if the Iter has a next element, false otherwise
-     */
-    Iter.prototype.hasNext = function() {
-        // If the current collection is a string or an array, return true or false if the index is less than 
-        // the length of the collection
-        if(typeof this.collection === 'string' || 
-            Object.prototype.toString.call(this.collection) === '[object Array]') {
-            return this.index < this.collection.length;
-        }
-        // else return true or false if the index is less than the length of the array of the collections keys
-        else {
-            return this.current < Object.keys(this.collection).length;
-        }  
-    };
-
-    /**
-     * @memberOf  Iter
-     * @instance
-     * @method  reset
-     * @description  Reset the references used to traverse the Iter.
-     */
-    Iter.prototype.reset = function() {
-        this.index = 0;
-        this.current = 0;
-    };
-
-    /**
-     * @memberOf  Iter
-     * @instance
-     * @method  each
-     * @description  Iterate over all elements of the Iterator and execute a callback function for each.
-     * @param  {function} callbackFunc A callback function to execute against each element of the Iter
-     */
-    Iter.prototype.each = function(callbackFunc) {
-        var elem;
-        for(elem = this.first(); this.hasNext(); elem = this.next()) {
-            callbackFunc(elem);
-        }
-        callbackFunc(elem); // execute the callback function against the last element of the collection
     };
 
     return Iter;

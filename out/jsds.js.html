@@ -1,4 +1,32 @@
-/** @module JSDS */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: jsds.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: jsds.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module JSDS */
 var JSDS = (function() {
 
 	/**
@@ -9,7 +37,7 @@ var JSDS = (function() {
 	Access to this method is made available on the public API of the JSDS module
 	with the slightly less verbose function name: extends
 	**/
-	var __extends = (this && this.__extends) || function (d, b) {
+	var __extends = (this &amp;&amp; this.__extends) || function (d, b) {
 	    for (var p in b) {
 	    	if (b.hasOwnProperty(p)) d[p] = b[p];
 	    }
@@ -21,27 +49,30 @@ var JSDS = (function() {
 	 * @class 
 	 *
 	 * A JSDS Dictionary is a pseudoclassical JavaScript OO implementation of the dictionary data structure.
-	 * A <em>Dictionary</em> stores an unordered collection of data as <em>key/value</em> pairs, 
-	 * known as <em>entries</em>. Dictionary <em>keys</em> are unique; the association of keys 
-	 * and values defines a <em>mapping</em>. Dictionaries are also known as <em>associative arrays</em> 
-	 * or <em>maps</em>. A Dictionary <em>ADT</em> includes the following operations: 
-	 * <ul>
-	 * <li><em>getSize</em>     - to get the size of the data structure;</li>
-	 * <li><em>isEmpty</em>     - to check to see if it is empty;</li>
-	 * <li><em>put</em>         - to put or add new entries to the dictionary;</li>
-	 * <li><em>get</em>         - to get the value associated with a given key;</li> 
-	 * <li><em>remove</em>      - to remove entries from the dictionary;</li> 
-	 * <li><em>getEntries</em>  - to get all entries in the dictionary
-	 * (as an iterable or iterator);</li> 
-	 * <li><em>getValues</em>   - to get all values in the dictionary;</li> 
-	 * <li><em>getKeys</em>     - to get all keys in the dictionary;</li> and
-	 * <li><em>toString</em>    - to represent the entries in the dictionary
+	 * A &lt;em>Dictionary&lt;/em> stores an unordered collection of data as &lt;em>key/value&lt;/em> pairs, 
+	 * known as &lt;em>entries&lt;/em>. Dictionary &lt;em>keys&lt;/em> are unique; the association of keys 
+	 * and values defines a &lt;em>mapping&lt;/em>. Dictionaries are also known as &lt;em>associative arrays&lt;/em> 
+	 * or &lt;em>maps&lt;/em>. A Dictionary &lt;em>ADT&lt;/em> includes the following operations: 
+	 * &lt;ul>
+	 * &lt;li>&lt;em>getSize&lt;/em>     - to get the size of the data structure;&lt;/li>
+	 * &lt;li>&lt;em>isEmpty&lt;/em>     - to check to see if it is empty;&lt;/li>
+	 * &lt;li>&lt;em>put&lt;/em>         - to put or add new entries to the dictionary;&lt;/li>
+	 * &lt;li>&lt;em>get&lt;/em>         - to get the value associated with a given key;&lt;/li> 
+	 * &lt;li>&lt;em>remove&lt;/em>      - to remove entries from the dictionary;&lt;/li> 
+	 * &lt;li>&lt;em>getEntries&lt;/em>  - to get all entries in the dictionary
+	 * (as an iterable or iterator);&lt;/li> 
+	 * &lt;li>&lt;em>getValues&lt;/em>   - to get all values in the dictionary;&lt;/li> 
+	 * &lt;li>&lt;em>getKeys&lt;/em>     - to get all keys in the dictionary;&lt;/li> and
+	 * &lt;li>&lt;em>toString&lt;/em>    - to represent the entries in the dictionary
 	 * as a string and/or to display the contents of the dictionary.
-	 * </ul>
+	 * &lt;/ul>
 	 * Most modern browsers support Maps (associative arrays/dictionaries), 
 	 * so this implementation isn't strictly necessary. If you choose to
 	 * use this implementation, note that it depends on the Iter.js class 
-	 * to work.
+	 * to work. You may wish to use requirejs to manage module loading in
+	 * your application and handle the relationship that way. But the 
+	 * simplest way to use the Dictionary class is to make sure to include 
+	 * the Iter.js script in the html before the Dictionary.js script.
 	 *
 	 * @memberof module:JSDS 
 	 */
@@ -77,7 +108,7 @@ var JSDS = (function() {
 	        put: function(key, val) {
 	            // If a key/val pair have been supplied, the key is unique and the key is not a number,
 	            // add the entry to the dictionary and return 1 for success
-	            if(!(key in this.table) && (key != undefined, val != undefined) && typeof key != "number")
+	            if(!(key in this.table) &amp;&amp; (key != undefined, val != undefined) &amp;&amp; typeof key != "number")
 	            {
 	                this.table[key] = val;
 	                return 1;
@@ -226,17 +257,17 @@ var JSDS = (function() {
 	/**
 	 * @class
 	 * The JSDS Iter is a helper class to provide iterator support to JSDS data structures.
-	 * An <em>Iter</em> object is an iterator. Iterators have a reference to a given iterable 
+	 * An &lt;em>Iter&lt;/em> object is an iterator. Iterators have a reference to a given iterable 
 	 * collection and the current position of the iterator with respect to the latter. Iterators 
 	 * provide methods that permit the traversal of a collection. An Iter (iterator) ADT includes
 	 * the following operations: 
-	 * <ul>
-	 * <li><em>first</em>   - to get the first element of the Iter;</li>
-	 * <li><em>next</em>    - to get the next element of the Iter;</li>
-	 * <li><em>hasNext</em> - to determine whether or not the Iter has a next element;</li>
-	 * <li><em>reset</em>   - to reset the references used to traverse the Iter;</li>
-	 * <li><em>each</em>    - to iterate over the elements of the Iter and execute a callback function against each;</li>
-	 * </ul>
+	 * &lt;ul>
+	 * &lt;li>&lt;em>first&lt;/em>   - to get the first element of the Iter;&lt;/li>
+	 * &lt;li>&lt;em>next&lt;/em>    - to get the next element of the Iter;&lt;/li>
+	 * &lt;li>&lt;em>hasNext&lt;/em> - to determine whether or not the Iter has a next element;&lt;/li>
+	 * &lt;li>&lt;em>reset&lt;/em>   - to reset the references used to traverse the Iter;&lt;/li>
+	 * &lt;li>&lt;em>each&lt;/em>    - to iterate over the elements of the Iter and execute a callback function against each;&lt;/li>
+	 * &lt;/ul>
 	 * 
 	 * This class is not a general purpose implementation. It will return unexpected results if
 	 * it is used on any collection or object that nests other collections or objects. It is best
@@ -299,7 +330,7 @@ var JSDS = (function() {
 	                keys = Object.keys(this.collection);
 	                this.currKey = keys[this.current];
 	                this.currVal = this.collection[keys[this.current++]];
-	                return this.current <= keys.length ? [this.currKey, this.currVal] : undefined;
+	                return this.current &lt;= keys.length ? [this.currKey, this.currVal] : undefined;
 	            }
 	        },
 	        
@@ -315,11 +346,11 @@ var JSDS = (function() {
 	            // the length of the collection
 	            if(typeof this.collection === 'string' || 
 	                Object.prototype.toString.call(this.collection) === '[object Array]') {
-	                return this.index < this.collection.length;
+	                return this.index &lt; this.collection.length;
 	            }
 	            // else return true or false if the index is less than the length of the array of the collections keys
 	            else {
-	                return this.current < Object.keys(this.collection).length;
+	                return this.current &lt; Object.keys(this.collection).length;
 	            }  
 	        },
 
@@ -358,25 +389,25 @@ var JSDS = (function() {
 	/**
 	 * @class 
 	 * @description A JSDS List is a pseudoclassical JavaScript OO implementation of the list data structure.
-	 * A <em>List</em> is an ordered collection of data elements. A List <em>ADT</em> includes 
+	 * A &lt;em>List&lt;/em> is an ordered collection of data elements. A List &lt;em>ADT&lt;/em> includes 
 	 * the following operations: 
-	 * <ul>
-	 * <li><em>append</em> 		- to add new elements to the end of a list;</li>
-	 * <li><em>back</em> 		- to move to the back of the list;</li>
-	 * <li><em>clear</em> 		- to remove the list elements en masse;</li>
-	 * <li><em>contains</em> 	- to determine whether the list contains a given element;</li>
-	 * <li><em>currPos</em> 	- to get the current position in the list;</li>
-	 * <li><em>front</em> 		- to move to the front of the list;</li>
-	 * <li><em>getCurrent</em> 	- to get the current element in the list;</li>
-	 * <li><em>insert</em> 		- to insert elements into the list after an existing element or at the beginning of the list;</li>
-	 * <li><em>isEmpty</em> 	- to check whether the list contains any elements;</li>
-	 * <li><em>length</em> 		- to get the number of elements in the list;</li>
-	 * <li><em>moveTo</em> 		- to move to any arbitrary location in the list;</li>
-	 * <li><em>next</em> 		- to traverse the list from left to right;</li>
-	 * <li><em>prev</em> 		- to move to the previous element in the list;</li>
-	 * <li><em>remove</em> 		- to remove a given element from the list;</li>
-	 * <li><em>toString</em> 	- to get a string representation of the list;</li>
-	 * </ul>
+	 * &lt;ul>
+	 * &lt;li>&lt;em>append&lt;/em> 		- to add new elements to the end of a list;&lt;/li>
+	 * &lt;li>&lt;em>back&lt;/em> 		- to move to the back of the list;&lt;/li>
+	 * &lt;li>&lt;em>clear&lt;/em> 		- to remove the list elements en masse;&lt;/li>
+	 * &lt;li>&lt;em>contains&lt;/em> 	- to determine whether the list contains a given element;&lt;/li>
+	 * &lt;li>&lt;em>currPos&lt;/em> 	- to get the current position in the list;&lt;/li>
+	 * &lt;li>&lt;em>front&lt;/em> 		- to move to the front of the list;&lt;/li>
+	 * &lt;li>&lt;em>getCurrent&lt;/em> 	- to get the current element in the list;&lt;/li>
+	 * &lt;li>&lt;em>insert&lt;/em> 		- to insert elements into the list after an existing element or at the beginning of the list;&lt;/li>
+	 * &lt;li>&lt;em>isEmpty&lt;/em> 	- to check whether the list contains any elements;&lt;/li>
+	 * &lt;li>&lt;em>length&lt;/em> 		- to get the number of elements in the list;&lt;/li>
+	 * &lt;li>&lt;em>moveTo&lt;/em> 		- to move to any arbitrary location in the list;&lt;/li>
+	 * &lt;li>&lt;em>next&lt;/em> 		- to traverse the list from left to right;&lt;/li>
+	 * &lt;li>&lt;em>prev&lt;/em> 		- to move to the previous element in the list;&lt;/li>
+	 * &lt;li>&lt;em>remove&lt;/em> 		- to remove a given element from the list;&lt;/li>
+	 * &lt;li>&lt;em>toString&lt;/em> 	- to get a string representation of the list;&lt;/li>
+	 * &lt;/ul>
 	 *
 	 * @memberof module:JSDS
 	 */
@@ -437,7 +468,7 @@ var JSDS = (function() {
 			 * @return {boolean}  True if the list contains the element, false otherwise
 			 */
 			contains: function(element) {
-				for(var i = 0; i < this.datastore.length; ++i) {
+				for(var i = 0; i &lt; this.datastore.length; ++i) {
 						if(this.datastore[i] == element) {
 							return true;
 						}
@@ -465,7 +496,7 @@ var JSDS = (function() {
 			 * @return {number}  The index of the given element or -1 if element not found
 			 */
 			find: function(element) {
-				for(var i = 0; i < this.datastore.length; ++i) {
+				for(var i = 0; i &lt; this.datastore.length; ++i) {
 						if(this.datastore[i] == element) {
 							return i;
 						}
@@ -543,7 +574,7 @@ var JSDS = (function() {
 			 * @param  {number} position The index associated with the new position in the list
 			 */
 			moveTo: function(position) {
-				if(typeof(position) === "number" && !(position >= this.datastore.length)) {
+				if(typeof(position) === "number" &amp;&amp; !(position >= this.datastore.length)) {
 						this.pos = position;
 						return 1;
 					}
@@ -558,7 +589,7 @@ var JSDS = (function() {
 			 * @return {*} The next element
 			 */
 			next: function() {
-				if(this.pos < this.size-1) {
+				if(this.pos &lt; this.size-1) {
 						return this.datastore[++this.pos];
 					}
 					return -1;
@@ -616,17 +647,17 @@ var JSDS = (function() {
 	 * A JSDS queue is a pseudoclassical JavaScript OO implementation of the queue data structure.
 	 * A queue is an ordered list. Queues are first-in first-out (FIFO) data structures. 
 	 * Data are inserted into a queue at the back of the list and removed from the front. 
-	 * A Queue <em>ADT</em> includes the following operations:
-	 * <ul>
-	 * <li><em>enqueue</em>     - to add an element to the queue;</li>
-	 * <li><em>dequeue</em>     - to remove an element from a queue;</li>
-	 * <li><em>back</em>        - to get the element at the back of the queue (analogous to peek);</li>
-	 * <li><em>front</em>       - to get the element at the front of the queue (analogous to peek);</li>
-	 * <li><em>clear</em>       - to clear or empty the queue;</li>
-	 * <li><em>getLength</em>   - to get the number of elements in the queue;</li>
-	 * <li><em>isEmpty</em>     - to determine whether or not a given queue is empty (contains no elements); and</li>
-	 * <li><em>toString</em>    - to get a string representation of the queue.</li>
-	 * </ul>
+	 * A Queue &lt;em>ADT&lt;/em> includes the following operations:
+	 * &lt;ul>
+	 * &lt;li>&lt;em>enqueue&lt;/em>     - to add an element to the queue;&lt;/li>
+	 * &lt;li>&lt;em>dequeue&lt;/em>     - to remove an element from a queue;&lt;/li>
+	 * &lt;li>&lt;em>back&lt;/em>        - to get the element at the back of the queue (analogous to peek);&lt;/li>
+	 * &lt;li>&lt;em>front&lt;/em>       - to get the element at the front of the queue (analogous to peek);&lt;/li>
+	 * &lt;li>&lt;em>clear&lt;/em>       - to clear or empty the queue;&lt;/li>
+	 * &lt;li>&lt;em>getLength&lt;/em>   - to get the number of elements in the queue;&lt;/li>
+	 * &lt;li>&lt;em>isEmpty&lt;/em>     - to determine whether or not a given queue is empty (contains no elements); and&lt;/li>
+	 * &lt;li>&lt;em>toString&lt;/em>    - to get a string representation of the queue.&lt;/li>
+	 * &lt;/ul>
 	 *
 	 * @memberof module:JSDS
 	 */
@@ -762,29 +793,29 @@ var JSDS = (function() {
 	/**
 	 * @class
 	 * @description A JSDS Set is a pseudoclassical JavaScript OO implementation of the set data structure
-	 * A <em>Set</em> is an unordered collection of unique elements. A set
+	 * A &lt;em>Set&lt;/em> is an unordered collection of unique elements. A set
 	 * with no elements is called the empty or null set. The universe is the set of all 
 	 * elements of interest (otherwise known as the universal set). Any two sets
 	 * are equal if and only if they contain precisely the same members. A set A 
 	 * is a subset of some set B if all of the members of A are also members of B. 
 	 * The basic operations on a set include union, intersection, and difference. 
-	 * The <em>union</em> of two sets A and B is the set of all elements which belong to A 
-	 * or B, or both. The <em>intersection</em> of two sets A and B is the set of elements 
-	 * which belong to both A and B. The <em>difference</em> (symmetric difference) of two 
+	 * The &lt;em>union&lt;/em> of two sets A and B is the set of all elements which belong to A 
+	 * or B, or both. The &lt;em>intersection&lt;/em> of two sets A and B is the set of elements 
+	 * which belong to both A and B. The &lt;em>difference&lt;/em> (symmetric difference) of two 
 	 * sets A and B includes those elements which belong to A or B but not to both.
-	 * A set <em>ADT</em> includes the following operations:
-	 * <ul>
-	 * <li><em>insert</em>       - insert a new data element;</li>
-	 * <li><em>remove</em>       - remove an existing data element;</li>
-	 * <li><em>getLength</em>    - get the number of elements in the set;</li>
-	 * <li><em>union</em>        - get the union of two sets;</li>
-	 * <li><em>intersection</em> - get the intersection of two sets;</li>
-	 * <li><em>subset</em>       - check to see if a given set is a subset of the set;</li>
-	 * <li><em>difference</em>   - get the difference of two sets;</li>
-	 * <li><em>symmetric difference</em> - get the symmetric difference of two sets;</li>
-	 * <li><em>toString</em>     - get a string representation of the set;</li>
-	 * </ul>
-	 * <br/>
+	 * A set &lt;em>ADT&lt;/em> includes the following operations:
+	 * &lt;ul>
+	 * &lt;li>&lt;em>insert&lt;/em>       - insert a new data element;&lt;/li>
+	 * &lt;li>&lt;em>remove&lt;/em>       - remove an existing data element;&lt;/li>
+	 * &lt;li>&lt;em>getLength&lt;/em>    - get the number of elements in the set;&lt;/li>
+	 * &lt;li>&lt;em>union&lt;/em>        - get the union of two sets;&lt;/li>
+	 * &lt;li>&lt;em>intersection&lt;/em> - get the intersection of two sets;&lt;/li>
+	 * &lt;li>&lt;em>subset&lt;/em>       - check to see if a given set is a subset of the set;&lt;/li>
+	 * &lt;li>&lt;em>difference&lt;/em>   - get the difference of two sets;&lt;/li>
+	 * &lt;li>&lt;em>symmetric difference&lt;/em> - get the symmetric difference of two sets;&lt;/li>
+	 * &lt;li>&lt;em>toString&lt;/em>     - get a string representation of the set;&lt;/li>
+	 * &lt;/ul>
+	 * &lt;br/>
 	 *
 	 * @memberof module:JSDS
 	 */
@@ -815,7 +846,7 @@ var JSDS = (function() {
 	         */
 	        insert: function(data) {
 	            // Check to ensure new element is unique
-	            if(this.datastore.indexOf(data) < 0) {
+	            if(this.datastore.indexOf(data) &lt; 0) {
 	                this.datastore.push(data);
 	                return true;
 	            }
@@ -883,10 +914,10 @@ var JSDS = (function() {
 	            var temp = new Set(); 
 	            var i;
 	            if(set instanceof Set) {
-	                for(i = 0; i < this.datastore.length; i++) {
+	                for(i = 0; i &lt; this.datastore.length; i++) {
 	                    temp.insert(this.datastore[i]);
 	                }
-	                for(i = 0; i < set.datastore.length; i++) {
+	                for(i = 0; i &lt; set.datastore.length; i++) {
 	                    if(!(temp.contains(set.datastore[i]))) {
 	                        temp.datastore.push(set.datastore[i]);
 	                    }
@@ -909,7 +940,7 @@ var JSDS = (function() {
 	            var temp = new Set();
 	            var i;
 	            if( set instanceof Set) {
-	                for(i = 0; i < this.datastore.length; i++) {
+	                for(i = 0; i &lt; this.datastore.length; i++) {
 	                    if(set.contains(this.datastore[i])) {
 	                        temp.insert(this.datastore[i]);
 	                    }
@@ -964,7 +995,7 @@ var JSDS = (function() {
 	         */
 	        difference: function(set) {
 	            var temp = new Set();
-	            for(var i = 0; i < this.datastore.length; i++) {
+	            for(var i = 0; i &lt; this.datastore.length; i++) {
 	                if(!(set.contains(this.datastore[i]))) {
 	                    temp.insert(this.datastore[i]);
 	                }
@@ -994,17 +1025,17 @@ var JSDS = (function() {
 	/**
 	 * @class
 	 * A JSDS Stack is a pseudoclassical JavaScript OO implementation of the stack data structure
-	 * A <em>Stack</em> is essentially a list of data elements which may be accessed at only one end. 
-	 * Stacks are last-in, first-out (LIFO) data structures. A Stack <em>ADT</em> includes the 
+	 * A &lt;em>Stack&lt;/em> is essentially a list of data elements which may be accessed at only one end. 
+	 * Stacks are last-in, first-out (LIFO) data structures. A Stack &lt;em>ADT&lt;/em> includes the 
 	 * following operations:
-	 * <ul>
-	 * <li><em>clear</em> 		- to delete the contents of the Stack;</li>
-	 * <li><em>getLength</em> 	- to get the number of elements contained in the Stack;</li>
-	 * <li><em>peek</em> 		- to peek at the element at the top of the Stack;</li>
-	 * <li><em>pop</em> 		- to remove elements from the top of the Stack;</li>
-	 * <li><em>push</em> 		- to add elements to the top of Stack;</li>
-	 * <li><em>toString</em> 	- to get a string representation of the Stack;</li>
-	 * </ul>
+	 * &lt;ul>
+	 * &lt;li>&lt;em>clear&lt;/em> 		- to delete the contents of the Stack;&lt;/li>
+	 * &lt;li>&lt;em>getLength&lt;/em> 	- to get the number of elements contained in the Stack;&lt;/li>
+	 * &lt;li>&lt;em>peek&lt;/em> 		- to peek at the element at the top of the Stack;&lt;/li>
+	 * &lt;li>&lt;em>pop&lt;/em> 		- to remove elements from the top of the Stack;&lt;/li>
+	 * &lt;li>&lt;em>push&lt;/em> 		- to add elements to the top of Stack;&lt;/li>
+	 * &lt;li>&lt;em>toString&lt;/em> 	- to get a string representation of the Stack;&lt;/li>
+	 * &lt;/ul>
 	 *
 	 * @memberof module:JSDS
 	 **/
@@ -1046,7 +1077,7 @@ var JSDS = (function() {
 			 * @return {*} Return the element at the top of the stack, or -1 if the stack is empty.
 			 */
 			pop: function() {
-				if(this.top <= 0) {
+				if(this.top &lt;= 0) {
 					this.clear(); // reinitialise the underlying datastore and reset the top variable
 					return -1;	  // return -1 to indicate to the caller that the operation was unsuccessful
 				}
@@ -1117,4 +1148,26 @@ var JSDS = (function() {
 		extends: __extends
 	}
 
-})();
+})();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-JSDS.html">JSDS</a></li></ul><h3>Classes</h3><ul><li><a href="module-JSDS.Dictionary.html">Dictionary</a></li><li><a href="module-JSDS.Iter.html">Iter</a></li><li><a href="module-JSDS.List.html">List</a></li><li><a href="module-JSDS.Queue.html">Queue</a></li><li><a href="module-JSDS.Set.html">Set</a></li><li><a href="module-JSDS.Stack.html">Stack</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Oct 07 2016 15:02:23 GMT+0100 (IST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

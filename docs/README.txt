@@ -1,9 +1,15 @@
-README
+## README
+
+Run the following command from the root directory to generate the docs:
+
+jsdoc -c docs/conf.js
+
+
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 
 To run jsdoc against an entire directory:
 
 jsdoc -r [path]
-
 
 To run it against a single file in the current directory:
 
@@ -13,6 +19,5 @@ To run it with a given configuration file:
 
 jsdoc -c [/path/to/conf.json]
 
-For my setup, I run it as follows from the project root directory:
+//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 
-jsdoc -c docs/conf.js

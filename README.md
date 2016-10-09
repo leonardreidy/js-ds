@@ -32,7 +32,7 @@ class:
 
       function ChattyStack() {
         parent.call(this);
-        console.log("ChattyStack initialised!"); // 
+        console.log("ChattyStack initialised!");
       }
 
         ChattyStack.prototype.push = function(element) {

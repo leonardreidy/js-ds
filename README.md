@@ -4,7 +4,7 @@ A simple Object-Oriented JavaScript data structures library in a broadly pseudoc
 
 ## Installation
 
-To use js-ds data structures in a project, include the module source
+To use JSDS data structures in a project, include the module source
 file in your project html files.
 
 ## Basic Usage
@@ -20,10 +20,10 @@ use a stack object, for example:
     s.clear();			 	        // clear the stack
     s.toString();		 	        // get a string representation of the stack
 
-## Extending js-ds classes
-To facilitate pseudoclassical inheritance, the js-ds module includes a
+## Extending JSDS classes
+To facilitate pseudoclassical inheritance, the JSDS module includes a
 utility function, called extends() based on the same pattern used by the
-MS TypeScript transpiler. Here is an example of how to extend a js-ds 
+MS TypeScript transpiler. Here is an example of how to extend a JSDS 
 class: 
 
     var ChattyStack = (function(parent) {
@@ -35,40 +35,36 @@ class:
         console.log("ChattyStack initialised!"); // 
       }
 
-      ChattyStack.prototype = {
-
-        push: function(element) {
+        ChattyStack.prototype.push = function(element) {
           parent.prototype.push.call(this, element)
           console.log("Element pushed!");
-        },
+        };
 
-        pop: function() {
+        ChattyStack.prototype.pop = function() {
           var popped = parent.prototype.pop.call(this);
           console.log("Pop!")
           return popped;
-        },
+        };
 
-        peek: function() {
+        ChattyStack.prototype.peek = function() {
           console.log("Peeking...");
           return parent.prototype.peek.call(this);
-        },
+        };
 
-        clear: function() {
+        ChattyStack.prototype.clear = function() {
           parent.prototype.clear.call(this);
           console.log("Clearing ChattyStack!");
-        },
+        };
 
-        getLength: function() {
+        ChattyStack.prototype.getLength = function() {
           console.log("Getting length...enjoy!");
           return parent.prototype.getLength.call(this);
-        },
+        };
 
-        toString: function() {
+        ChattyStack.prototype.toString = function() {
           console.log("toStringing() all day long...");
           return parent.prototype.toString.call(this);
-        }
-
-      }
+        };
 
       return ChattyStack;
 

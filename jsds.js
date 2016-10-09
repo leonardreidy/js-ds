@@ -17,6 +17,7 @@ var JSDS = (function() {
 	// and represents a best practice in pseudoclassical JavaScript inheritance
 	// Access to this method is made available on the public API of the JSDS module
 	// with the slightly less verbose function name: extends
+	
 	/** @function __extends
 	  * @ignore
 	  */

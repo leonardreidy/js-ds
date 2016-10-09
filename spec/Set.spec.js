@@ -12,9 +12,9 @@ describe("Set", function() {
     var right;
 
     beforeEach(function() {
-        temp = new Set();
-        left = new Set();
-        right = new Set();
+        temp = new JSDS.Set();
+        left = new JSDS.Set();
+        right = new JSDS.Set();
         for(var i = 0; i < 10; i++) {
             left.insert(i);
         }

@@ -12,7 +12,7 @@ describe("Dictionary", function() {
     };
 
     beforeEach(function() {
-        dict = new Dictionary();
+        dict = new JSDS.Dictionary();
         initialiseDictionary(100);
     });
 
@@ -21,7 +21,7 @@ describe("Dictionary", function() {
         var i;
         var status;
         var returnVal;
-        dict = new Dictionary();
+        dict = new JSDS.Dictionary();
 
         status = dict.put();        // no arguments
         expect(status).toEqual(-1);
@@ -37,7 +37,7 @@ describe("Dictionary", function() {
         expect(Object.keys(dict.table).length).toEqual(1);
 
         //create and initialise the dictionary anew
-        dict = new Dictionary();
+        dict = new JSDS.Dictionary();
         initialiseDictionary(100);
 
         expect(Object.keys(dict.table).length).toEqual(100);
@@ -132,7 +132,7 @@ describe("Dictionary", function() {
     it('checks if the dictionary is empty (has no entries)', function() {
         
         expect(dict.isEmpty()).toEqual(false);
-        dict = new Dictionary();
+        dict = new JSDS.Dictionary();
         expect(dict.isEmpty()).toEqual(true);
     });
 
@@ -151,7 +151,7 @@ describe("Dictionary", function() {
     });
 
     it('returns a string representation of the dictionary', function() {
-        dict = new Dictionary();
+        dict = new JSDS.Dictionary();
         var stringRep = "";
         dict.put("name", "Crouglas Dockford");
         dict.put("age", "unknown");

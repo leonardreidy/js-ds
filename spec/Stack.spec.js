@@ -3,7 +3,7 @@ describe("Stack", function() {
 	var stack;
 
 	beforeEach(function() {
-		stack = new Stack();
+		stack = new JSDS.Stack();
 		stack.push('a');
 		stack.push('b');
 		stack.push('c');

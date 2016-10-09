@@ -4,7 +4,7 @@ describe("List", function(){
 	var alphabet;
 
 	beforeEach(function() {
-		list = new List();
+		list = new JSDS.List();
 		alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 		for(var i = 0; i < alphabet.length; i++) {
 			list.append(alphabet[i]);

@@ -4,7 +4,7 @@ describe("Iter", function() {
 
     beforeEach(function() {
         var simpleObj = {name: "Leonard M Reidy", age: 37, occupation: "Web application developer", location: "Galway/Ireland"};
-        iter = new Iter(simpleObj);
+        iter = new JSDS.Iter(simpleObj);
     });
 
     it('gets the first element of the current Iter object', function() {
@@ -69,7 +69,7 @@ describe("Iter", function() {
 
     it('executes a callback function on each element of the iter', function() {
         var test = [1,2,3,4,5];
-        iter = new Iter(test);
+        iter = new JSDS.Iter(test);
         var r = []; 
         function concatStuff(target) {
             r.push(target);

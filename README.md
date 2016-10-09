@@ -1,27 +1,74 @@
-# js-ds
+# JSDS
 
 A simple Object-Oriented JavaScript data structures library in a broadly pseudoclassical style. 
 
 ## Installation
 
-To use js-ds data structures in a project, include the corresponding source
-files in the head of the html files of your project as needed. Currently, this 
-project is a work-in-progress and data structure implementations will be added 
-to the project as they are completed. Ultimately, the entire library will be
-available to include in your project as a single source file ('js-ds.js').
+To use JSDS data structures in a project, include the module source
+file in your project html files.
 
-## Usage
+## Basic Usage
 
 Usage follows fairly common object-oriented JavaScript patterns. To create and 
 use a stack object, for example:
 
-    var s = new Stack(); 	// create a new stack
-    s.push("anElement"); 	// push a string onto the stack
-    s.push(4);			 	// push a number onto the stack
-    s.pop();			 	// pop an element off the stack
-    s.peek();			 	// peek at the top element
-    s.clear();			 	// clear the stack
-    s.toString();		 	// get a string representation of the stack
+    var s = new JSDS.Stack(); 		// create a new stack
+    s.push("anElement"); 		    // push a string onto the stack
+    s.push(4);			 	        // push a number onto the stack
+    s.pop();			 	        // pop an element off the stack
+    s.peek();			 	        // peek at the top element
+    s.clear();			 	        // clear the stack
+    s.toString();		 	        // get a string representation of the stack
+
+## Extending JSDS classes
+To facilitate pseudoclassical inheritance, the JSDS module includes a
+utility function, called `extends()` based on the same pattern used by the
+MS TypeScript transpiler. Here is an example of how to extend a JSDS 
+class: 
+
+    var ChattyStack = (function(parent) {
+
+      JSDS.extends(ChattyStack, parent);
+
+      function ChattyStack() {
+        parent.call(this);
+        console.log("ChattyStack initialised!");
+      }
+
+        ChattyStack.prototype.push = function(element) {
+          parent.prototype.push.call(this, element)
+          console.log("Element pushed!");
+        };
+
+        ChattyStack.prototype.pop = function() {
+          var popped = parent.prototype.pop.call(this);
+          console.log("Pop!")
+          return popped;
+        };
+
+        ChattyStack.prototype.peek = function() {
+          console.log("Peeking...");
+          return parent.prototype.peek.call(this);
+        };
+
+        ChattyStack.prototype.clear = function() {
+          parent.prototype.clear.call(this);
+          console.log("Clearing ChattyStack!");
+        };
+
+        ChattyStack.prototype.getLength = function() {
+          console.log("Getting length...enjoy!");
+          return parent.prototype.getLength.call(this);
+        };
+
+        ChattyStack.prototype.toString = function() {
+          console.log("toStringing() all day long...");
+          return parent.prototype.toString.call(this);
+        };
+
+      return ChattyStack;
+
+    })(JSDS.Stack);
 
 ## Contributing
 
@@ -38,9 +85,6 @@ TODO: Write history
 ## Credits
 
 TODO: Write credits
-
-## License (MIT)
-
 
 ## License (MIT)
 

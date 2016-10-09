@@ -3,7 +3,7 @@ describe("Queue", function(){
 	var queue;
 
 	beforeEach(function() {
-		queue = new Queue();
+		queue = new JSDS.Queue();
 		queue.enqueue('a');
 		queue.enqueue('b');
 		queue.enqueue('c');

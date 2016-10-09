@@ -11,6 +11,7 @@ file in your project html files.
 
 Usage follows fairly common object-oriented JavaScript patterns. To create and 
 use a stack object, for example:
+
     `var s = new Stack(); 	// create a new stack
     s.push("anElement"); 	// push a string onto the stack
     s.push(4);			 	// push a number onto the stack

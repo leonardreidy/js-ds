@@ -12,13 +12,13 @@ file in your project html files.
 Usage follows fairly common object-oriented JavaScript patterns. To create and 
 use a stack object, for example:
 
-    `var s = new Stack(); 	// create a new stack
-    s.push("anElement"); 	// push a string onto the stack
+    var s = new JSDS.Stack(); 		// create a new stack
+    s.push("anElement"); 		// push a string onto the stack
     s.push(4);			 	// push a number onto the stack
     s.pop();			 	// pop an element off the stack
     s.peek();			 	// peek at the top element
     s.clear();			 	// clear the stack
-    s.toString();		 	// get a string representation of the stack`
+    s.toString();		 	// get a string representation of the stack
 
 ## Extending js-ds classes
 To facilitate pseudoclassical inheritance, the js-ds module includes a
@@ -26,67 +26,53 @@ utility function, called extends() based on the same pattern used by the
 MS TypeScript transpiler. Here is an example of how to extend a js-ds 
 class: 
 
-`/** ChattyStack, child of Stack class **/
 var ChattyStack = (function(parent) {
 
-	/** Inherit from super class (Stack) **/
-	JSDS.extends(ChattyStack, parent);
+  JSDS.extends(ChattyStack, parent);
 
+  function ChattyStack() {
+    parent.call(this);
+    console.log("ChattyStack initialised!"); // 
+  }
 
-	/** Create and initialise new ChattyStack instance using inherited constructor - specialise
-		the constructor by logging a message about it! **/
-	function ChattyStack() {	
-		parent.call(this);
-		console.log("ChattyStack initialised!"); // 
-	}
+  ChattyStack.prototype = {
 
-	// ChattyStack prototype
-	ChattyStack.prototype = {
+    push: function(element) {
+      parent.prototype.push.call(this, element)
+      console.log("Element pushed!");
+    },
 
-		/** Push an element onto the ChattyStack and log a message **/
-		push: function(element) {
-			parent.prototype.push.call(this, element)
-			console.log("Element pushed!");
-		},
+    pop: function() {
+      var popped = parent.prototype.pop.call(this);
+      console.log("Pop!")
+      return popped;
+    },
 
-		/**Pop element off the ChattyStack and log a message **/
-		pop: function() {
-			var popped = parent.prototype.pop.call(this);
-			console.log("Pop!")
-			return popped;
-		},
+    peek: function() {
+      console.log("Peeking...");
+      return parent.prototype.peek.call(this);
+    },
 
-		/** Return the top element of the stack by accessing the element at the top-1 position of the 
-		 * underlying datastore (array) and log a message about it
-		 */
-		peek: function() {
-			console.log("Peeking...");
-			return parent.prototype.peek.call(this);
-		},
+    clear: function() {
+      parent.prototype.clear.call(this);
+      console.log("Clearing ChattyStack!");
+    },
 
-		/** Reset the stack, reinitialise the underlying datastore and log a message about it. **/
-		clear: function() {
-			parent.prototype.clear.call(this);
-			console.log("Clearing ChattyStack!");
-		},
+    getLength: function() {
+      console.log("Getting length...enjoy!");
+      return parent.prototype.getLength.call(this);
+    },
 
-		/** Return the number of elements in the stack and log a message about it. **/
-		getLength: function() {
-			console.log("Getting length...enjoy!");
-			return parent.prototype.getLength.call(this);
-		},
+    toString: function() {
+      console.log("toStringing() all day long...");
+      return parent.prototype.toString.call(this);
+    }
 
-		/** Return a string representation of the stack and log a message about it. **/
-		toString: function() {
-			console.log("toStringing() all day long...");
-			return parent.prototype.toString.call(this);
-		}
+  }
 
-	}
+  return ChattyStack;
 
-	return ChattyStack;
-	
-})(JSDS.Stack);`
+})(JSDS.Stack);
 
 ## Contributing
 

@@ -107,7 +107,7 @@ describe("Dictionary", function() {
         var i; 
         var iterator = dict.getEntries();
 
-        expect(iterator).toEqual(jasmine.any(Iter)); // check that getEntries() returns an object of type Iter
+        expect(iterator).toEqual(jasmine.any(JSDS.Iter)); // check that getEntries() returns an object of type Iter
 
         for(i = 0; i < 100; i++) {
             var entry = iterator.next();
@@ -125,7 +125,7 @@ describe("Dictionary", function() {
             count++;
         };
 
-        expect(dict.getSize()).toEqual(count);
+        expect(dict.getLength()).toEqual(count);
 
     });
 

@@ -22,7 +22,7 @@ use a stack object, for example:
 
 ## Extending JSDS classes
 To facilitate pseudoclassical inheritance, the JSDS module includes a
-utility function, called extends() based on the same pattern used by the
+utility function, called `extends()` based on the same pattern used by the
 MS TypeScript transpiler. Here is an example of how to extend a JSDS 
 class: 
 

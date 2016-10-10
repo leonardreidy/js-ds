@@ -79,14 +79,11 @@ class:
 5. Submit a pull request :D
 
 ## Compatibility
-<div><div class="htab"> 
+<div>
+<div> 
     <a name="AutoCompatibilityTable" id="AutoCompatibilityTable"></a> 
-    <ul> 
-        <li class="selected"><a>Desktop</a></li> 
-        <li class=""><a>Mobile</a></li> 
-    </ul> 
 <div id="compat-desktop" style="display: block;">
-<table class="compat-table">
+<table>
  <tbody>
   <tr>
    <th>Feature</th>
@@ -99,7 +96,7 @@ class:
   <tr>
    <td>Basic support</td>
    <td>5</td>
-   <td><a title="Released on 2011-03-22." href="/en-US/Firefox/Releases/4">4.0</a> (2)</td>
+   <td><a title="Released on 2011-03-22." href="https://developer.mozilla.org/en-US/Firefox/Releases/4">4.0</a> (2)</td>
    <td>9</td>
    <td>11.60</td>
    <td>5</td>
@@ -107,7 +104,7 @@ class:
  </tbody>
 </table>
 </div><div id="compat-mobile" style="display: none;">
-<table class="compat-table">
+<table>
  <tbody>
   <tr>
    <th>Feature</th>
@@ -122,14 +119,16 @@ class:
    <td>Basic support</td>
    <td><span title="Please update this with the earliest version of support." style="color: #888;">(Yes)</span></td>
    <td><span title="Please update this with the earliest version of support." style="color: #888;">(Yes)</span></td>
-   <td><a title="Released on 2011-03-22." href="/en-US/Firefox/Releases/4">4.0</a> (2)</td>
+   <td><a title="Released on 2011-03-22." href="https://developer.mozilla.org/en-US/Firefox/Releases/4en-US/Firefox/Releases/4">4.0</a> (2)</td>
    <td><span title="Please update this with the earliest version of support." style="color: #888;">(Yes)</span></td>
    <td>11.5</td>
    <td><span title="Please update this with the earliest version of support." style="color: #888;">(Yes)</span></td>
   </tr>
  </tbody>
 </table>
-</div></div></div>
+</div>
+</div>
+</div>
 
 ## History
 

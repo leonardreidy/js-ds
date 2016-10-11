@@ -78,6 +78,9 @@ class:
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
+## Compatibility
+This library is compatible with Browsers that support ES5 and above.
+
 ## History
 
 TODO: Write history
@@ -86,7 +89,7 @@ TODO: Write history
 
 TODO: Write credits
 
-## License (MIT)
+## The MIT License (MIT)
 
 Copyright (c) 2016, Leonard M Reidy
 

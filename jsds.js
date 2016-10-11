@@ -48,8 +48,7 @@ var JSDS = (function() {
 	// about how to handle custom error handling classes. The __extends function doesn't play 
 	// well with the Error built-in in all environments, so I have avoided using it for this.
 	// This class is very basic and serves to expose the error.stack property to the library, if it is
-	// available. This solution essentially fakes subclassing until I can find a more authoritative,
-	// more generalisable solution.
+	// available. 
 	var JSDSError = (function(){
 
 		function JSDSError(msg) { 
@@ -71,19 +70,22 @@ var JSDS = (function() {
 		return JSDSError;
 	})();
 
+	// Some shared Error types for the library at large
+	var NoArgsError = new JSDSError("NoArgsError: no arguments given - this method expects one or more arguments");
+	var InsufficientArgsError = new JSDSError("InsufficientArgsError: this method expects two or more arguments");
+	var ArgTypeError = new JSDSError("ArgTypeError: ");
 
 
 	/**\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\**/
 	/** 									Library Classes										 **/
 	/**\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\**/
 
+
 	// Dictionary Class as IIFE
 	var Dictionary = (function() {
 
-		// Private members - dictionary errors 
-		var NoArgsError = new JSDSError("NoArgsError: no arguments given - this method expects one or more arguments");
+		// Dictionary Specific errors 
 		var InvalidKeyError = new JSDSError("InvalidKeyError: key must be a string");
-		var InsufficientArgsError = new JSDSError("InsufficientArgsError: this method expects two arguments");
 		var EmptyStringError = new JSDSError("EmptyStringError: the key cannot be an empty string");
 
 	    /**
@@ -133,13 +135,13 @@ var JSDS = (function() {
 	    		}
 	    	}
 	    	catch(e) {
-	    		console.log("Possible browser compatibility error: Your browser may not support Object.keys() => " + e);
+	    		console.error("Possible browser compatibility error: Your browser may not support Object.keys() => " + e);
 	    	} 
 	    };
 
 	    /**
 	     * @description Get the value associated with the given key in the dictionary.
-	     * @param {String} key The key to the associated value in the dictionary
+	     * @param {string} key The key to the associated value in the dictionary
 	     * @return {*} The value associated with the given key or undefined if the key is not in the dictionary
 	     */
 	    Dictionary.prototype.get = function(key) {
@@ -172,9 +174,8 @@ var JSDS = (function() {
 	    		return new Iter(this.table) || undefined;
 	    	}
 	    	catch(e) {
-	    		console.error("Possible browser compatibility error: Your browser may not support Object.keys() => " + e);
+	    		console.error(e);
 	    	}
-	        
 	    };
 
 	    /**
@@ -242,7 +243,7 @@ var JSDS = (function() {
 
 	    /**
 	     * @description Add (put) an entry to the dictionary.
-	     * @param {String} key a string representing the key for the given entry
+	     * @param {string} key a string representing the key for the given entry
 	     * @param {*} val any value representing the value for the given entry
 	     * @return {number} 1 if successful, -1 if unsuccessful
 	     */
@@ -265,8 +266,7 @@ var JSDS = (function() {
    				}
    				// If the key is unique
    			    // add the entry to the dictionary and return 1 for success
-   			    if(!(key in this.table))
-   			    {
+   			    if(!(key in this.table)) {
    			        this.table[key] = val;
    			        return 1;
    			    // else return -1 to signify that the operation was unsuccessful
@@ -370,11 +370,11 @@ var JSDS = (function() {
 	     * @memberof module:JSDS
 	     */
 	    function Iter(collection) {
-	            this.collection = collection;
-	            this.index = 0;
-	            this.current = 0;
-	            this.currKey;
-	            this.currVal;
+            this.collection = collection;
+            this.index = 0;
+            this.current = 0;
+            this.currKey;
+            this.currVal;
 	    }
 
         /**
@@ -382,8 +382,13 @@ var JSDS = (function() {
          * @return {*} The first element of the current Iter
          */
         Iter.prototype.first = function() {
-            this.reset();
-            return this.next();
+        	try {
+        		this.reset();
+        		return this.next();
+        	}
+            catch(e) {
+            	console.error(e);
+            }
         };
 
         /**
@@ -392,18 +397,24 @@ var JSDS = (function() {
          */
         Iter.prototype.next = function() {
             var keys;
-            // If the current collection is a string or an array, return the current element and increment the index variable
-            if(typeof this.collection === 'string' || 
-                Object.prototype.toString.call(this.collection) === '[object Array]') {
-                return this.collection[this.index++];
-            // else, get the keys of the collection, then get the current key, and the current value, and return an array with 
-            // the current key and the current value as the 0th and 1st elements of that array
-            } else {
-                keys = Object.keys(this.collection);
-                this.currKey = keys[this.current];
-                this.currVal = this.collection[keys[this.current++]];
-                return this.current <= keys.length ? [this.currKey, this.currVal] : undefined;
+            try {
+            	// If the current collection is a string or an array, return the current element and increment the index variable
+            	if(typeof this.collection === 'string' || 
+            	    Object.prototype.toString.call(this.collection) === '[object Array]') {
+            	    return this.collection[this.index++];
+            	// else, get the keys of the collection, then get the current key, and the current value, and return an array with 
+            	// the current key and the current value as the 0th and 1st elements of that array
+            	} else {
+            	    keys = Object.keys(this.collection);
+            	    this.currKey = keys[this.current];
+            	    this.currVal = this.collection[keys[this.current++]];
+            	    return this.current <= keys.length ? [this.currKey, this.currVal] : undefined;
+            	}
             }
+            catch(e) {
+            	console.error("Possible browser compatibility error: Your browser may not support Object.keys() => " + e);
+            }
+            
         };
         
         /**
@@ -411,24 +422,35 @@ var JSDS = (function() {
          * @return {boolean} True if the Iter has a next element, false otherwise
          */
         Iter.prototype.hasNext = function() {
-            // If the current collection is a string or an array, return true or false if the index is less than 
-            // the length of the collection
-            if(typeof this.collection === 'string' || 
-                Object.prototype.toString.call(this.collection) === '[object Array]') {
-                return this.index < this.collection.length;
-            }
-            // else return true or false if the index is less than the length of the array of the collections keys
-            else {
-                return this.current < Object.keys(this.collection).length;
-            }  
+        	try {
+        		// If the current collection is a string or an array, return true or false if the index is less than 
+        		// the length of the collection
+        		if(typeof this.collection === 'string' || 
+        		    Object.prototype.toString.call(this.collection) === '[object Array]') {
+        		    return this.index < this.collection.length;
+        		}
+        		// else return true or false if the index is less than the length of the array of the collection's keys
+        		else {
+        		    return this.current < Object.keys(this.collection).length;
+        		} 
+        	}
+        	catch(e) {
+        		console.error("Possible browser compatibility error: Your browser may not support Object.keys() => " + e);
+        	}
+             
         };
 
         /**
          * @description Reset the references used to traverse the Iter.
          */
         Iter.prototype.reset = function() {
-            this.index = 0;
-            this.current = 0;
+        	try {
+        		this.index = 0;
+        		this.current = 0;
+        	}
+        	catch(e) {
+        		console.error(e);
+        	}
         };
 
         /**
@@ -436,11 +458,20 @@ var JSDS = (function() {
          * @param  {function} callbackFunc A callback function to execute against each element of the Iter
          */
         Iter.prototype.each = function(callbackFunc) {
-            var elem;
-            for(elem = this.first(); this.hasNext(); elem = this.next()) {
-                callbackFunc(elem);
-            }
-            callbackFunc(elem); // execute the callback function against the last element of the collection
+        	try {
+        		if(arguments.length === 0) {
+        			throw NoArgsError;
+        		}
+        		var elem;
+        		for(elem = this.first(); this.hasNext(); elem = this.next()) {
+        		    callbackFunc(elem);
+        		}
+        		callbackFunc(elem); // execute the callback function against the last element of the collection
+        	}
+        	catch(e) {
+        		console.error(e);
+        	}
+            
 	    };
 
 	    return Iter;
@@ -486,23 +517,43 @@ var JSDS = (function() {
 			 * @param {*} element Element to be appended
 			 */
 			List.prototype.append = function(element) {
-				this.datastore[this.size++] = element;
+				try {
+					if(arguments.length === 0) {
+						throw NoArgsError;
+					}
+					this.datastore[this.size++] = element;
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			};
 
 			/**
 			 * @description Set the position to facilitate traversal from the back of the list.
 			 */
 			List.prototype.back = function() {
-				this.pos = this.size-1;
+				try {
+					this.pos = this.size-1;
+				}
+				catch(e) {
+					console.error(e);
+				}
 			};
 
 			/**
 			 * @description Remove all elements from the list.
 			 */
 			List.prototype.clear = function() {
-				delete this.datastore;
-				this.datastore = [];
-				this.size = this.pos = 0;
+				try {
+					delete this.datastore;
+					this.datastore = [];
+					this.size = this.pos = 0;
+		
+				}
+				catch(e) {
+					console.error(e);
+				}
 			};
 
 			/**
@@ -511,12 +562,21 @@ var JSDS = (function() {
 			 * @return {boolean}  True if the list contains the element, false otherwise
 			 */
 			List.prototype.contains = function(element) {
-				for(var i = 0; i < this.datastore.length; ++i) {
-						if(this.datastore[i] == element) {
-							return true;
-						}
+				try {
+					if(arguments.length === 0) {
+						throw NoArgsError;
 					}
-				return false;
+					for(var i = 0; i < this.datastore.length; ++i) {
+							if(this.datastore[i] == element) {
+								return true;
+							}
+						}
+					return false;
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			};
 
 			/**
@@ -524,7 +584,13 @@ var JSDS = (function() {
 			 * @return {number} The index of the current position in the list
 			 */
 			List.prototype.currPos = function() {
-				return this.pos;
+				try {
+					return this.pos;
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			};
 
 			/**
@@ -533,19 +599,33 @@ var JSDS = (function() {
 			 * @return {number}  The index of the given element or -1 if element not found
 			 */
 			List.prototype.find = function(element) {
-				for(var i = 0; i < this.datastore.length; ++i) {
-						if(this.datastore[i] == element) {
-							return i;
-						}
+				try {
+					if(arguments.length === 0) {
+						throw NoArgsError;
 					}
+					for(var i = 0; i < this.datastore.length; ++i) {
+							if(this.datastore[i] == element) {
+								return i;
+							}
+						}
 					return -1;
+				}
+				catch(e) {
+					console.error(e);
+				}
 			};
 
 			/**
 			 * @description Set the position to facilitate traversal from the front of the list.
 			 */
 			List.prototype.front = function() {
-				this.pos = 0;
+				try {
+					this.pos = 0;
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			}; 
 
 			/**
@@ -553,7 +633,13 @@ var JSDS = (function() {
 			 * @return {*} The current element of the list
 			 */
 			List.prototype.getCurrent = function() {
-				return this.datastore[this.pos];
+				try {
+					return this.datastore[this.pos];
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			}; 
 
 			/**
@@ -562,13 +648,24 @@ var JSDS = (function() {
 			 * @param {*} after The element after which the given element will be inserted
 			 */
 			List.prototype.insert = function(element, after) {
-				var inPos = this.find(after);
-				if (inPos > -1) {
-					this.datastore.splice(inPos+1, 0, element);
-					++this.size;
-					return true;
+				try{
+					if(arguments.length === 0) {
+						throw NoArgsError;
+					}
+					else if (arguments.length === 1) {
+						throw InsufficientArgsError; 
+					}
+					var inPos = this.find(after);
+					if (inPos > -1) {
+						this.datastore.splice(inPos+1, 0, element);
+						++this.size;
+						return true;
+					}
+					return false;
 				}
-				return false;
+				catch(e) {
+					console.error(e);
+				}
 			}; 
 
 			/**
@@ -576,7 +673,13 @@ var JSDS = (function() {
 			 * @return {boolean} True if empty, false if not
 			 */
 			List.prototype.isEmpty = function() {
-				return (this.datastore.length === 0);
+				try {
+					return (this.datastore.length === 0);
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 
 			};
 
@@ -585,7 +688,13 @@ var JSDS = (function() {
 			 * @return {number} The number (integer) of elements in the list
 			 */
 			List.prototype.length = function() {
-				return this.size;
+				try {
+					return this.size;	
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			};
 
 			/**
@@ -593,11 +702,23 @@ var JSDS = (function() {
 			 * @param {number} position The index associated with the new position in the list
 			 */
 			List.prototype.moveTo = function(position) {
-				if(typeof(position) === "number" && !(position >= this.datastore.length)) {
-						this.pos = position;
-						return 1;
+				try {
+					if(arguments.length === 0){
+						throw NoArgsError;
 					}
+					else if (typeof position != "number") {
+						throw ArgTypeError;
+					}
+					if(!(position >= this.datastore.length)) {
+							this.pos = position;
+							return 1;
+						}
 					return -1;
+				}
+				catch(e) {
+					console.error(e + " moveTo() expects a single argument of type number");
+				}
+				
 			};
 
 			/**
@@ -605,10 +726,16 @@ var JSDS = (function() {
 			 * @return {*} The next element
 			 */
 			List.prototype.next = function() {
-				if(this.pos < this.size-1) {
-						return this.datastore[++this.pos];
-					}
+				try {
+					if(this.pos < this.size-1) {
+							return this.datastore[++this.pos];
+						}
 					return -1;
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			};
 
 			/**
@@ -616,9 +743,15 @@ var JSDS = (function() {
 			 * @return {*} The previous element or -1 if there is no previous element
 			 */
 			List.prototype.prev = function() {
-				if(this.pos > 0) {
+				try {
+					if(this.pos > 0) {
 						return this.datastore[--this.pos];
 					}
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			};
 
 			/**
@@ -627,13 +760,21 @@ var JSDS = (function() {
 			 * @return {boolean} True if the item is found and removed, false otherwise
 			 */
 			List.prototype.remove = function(element) {
-				var foundAt = this.find(element);
-					if(foundAt > -1) {
-						this.datastore.splice(foundAt, 1);
-						--this.size;
-						return true;
+				try {
+					if(arguments.length === 0) {
+						throw NoArgsError;
 					}
+					var foundAt = this.find(element);
+						if(foundAt > -1) {
+							this.datastore.splice(foundAt, 1);
+							--this.size;
+							return true;
+						}
 					return false;
+				}
+				catch(e) {
+					console.error(e);
+				}
 			};
 
 			/**
@@ -641,7 +782,13 @@ var JSDS = (function() {
 		     * @return {string} Return string representation of the list (using Object.prototype.toString())
 			 */
 			List.prototype.toString = function() {
-				return this.datastore.toString();
+				try {
+					return this.datastore.toString();
+				}
+				catch(e) {
+					console.log(e);
+				}
+				
 			};
 		
 		return List;
@@ -680,7 +827,13 @@ var JSDS = (function() {
          * @return {number} Return the length/number of elements in the queue
          */
         Queue.prototype.getLength = function () {
-            return (this.queue.length - this.offset);
+        	try {
+        		return (this.queue.length - this.offset);
+        	}
+        	catch(e) {
+        		console.error(e);
+        	}
+            
         };
 
         /**
@@ -688,7 +841,12 @@ var JSDS = (function() {
          * @return {boolean} Return true if queue is empty, false if not
          */
         Queue.prototype.isEmpty = function () {
-            return (this.queue.length === 0);
+        	try {
+        		return (this.queue.length === 0);
+        	}
+        	catch(e) {
+        		console.error(e);
+        	} 
         };
 
         /**
@@ -696,7 +854,16 @@ var JSDS = (function() {
          * @param {*} element Any data type
          */
         Queue.prototype.enqueue = function (element) {
-            this.queue.push(element);
+        	try {
+        		if(arguments.length === 0) {
+        			throw NoArgsError;
+        		}
+        		this.queue.push(element);
+        	}
+        	catch(e) {
+        		console.error(e);
+        	}
+            
         };
 
         /**
@@ -704,11 +871,17 @@ var JSDS = (function() {
          * @return {*} Return the dequeued element, or -1 if the queue is empty
          */
         Queue.prototype.dequeue = function () {
-            if (this.queue.length === 0) {
-                return undefined;
-            }
-            var element = this.queue.shift();
-            return element;
+        	try {
+        		if (this.queue.length === 0) {
+        		    return undefined;
+        		}
+        		//var element = this.queue.shift();
+        		return this.queue.shift;
+        	}
+        	catch(e) {
+        		console.error(e);
+        	}
+            
         };
 
         // Clear/reinitialise the queue
@@ -729,8 +902,13 @@ var JSDS = (function() {
          * @description Clear the queue. 
          */
         Queue.prototype.clear = function() {
-            delete this.queue;
-            this.queue = [];
+        	try {
+        		delete this.queue;
+        		this.queue = [];
+        	}
+        	catch(e) {
+        		console.error(e);
+        	}
         };
 
         /**
@@ -738,7 +916,12 @@ var JSDS = (function() {
          * @return {*} Return the element at the front of the queue, or undefined if the queue is empty
          */
         Queue.prototype.front = function () {
-            return (this.queue.length > 0 ? this.queue[this.offset] : undefined);
+        	try {
+        		return (this.queue.length > 0 ? this.queue[this.offset] : undefined);
+        	}
+        	catch(e) {
+        		console.error(e);
+        	}
         };
 
         /**
@@ -746,7 +929,12 @@ var JSDS = (function() {
          * @return {*} Return the element at the back of the queue, or undefined if the queue is empty
          */
         Queue.prototype.back = function() {
-            return(this.queue.length > 0 ? this.queue[this.queue.length-1] : undefined);
+        	try {
+        		return(this.queue.length > 0 ? this.queue[this.queue.length-1] : undefined);
+        	}
+        	catch(e) {
+        		console.error(e);
+        	} 
         }; 
 
         /**
@@ -754,7 +942,12 @@ var JSDS = (function() {
          * @return {string} Return string representation of the queue (using Object.prototype.toString())
          */
         Queue.prototype.toString = function() {
-            return this.queue.toString();
+        	try {
+        		return this.queue.toString();
+        	}
+        	catch(e) {
+        		console.error(e);
+        	}  
         };
 
 	    return Queue;
@@ -845,7 +1038,7 @@ var JSDS = (function() {
 
  //        *
  //         * @description Get a string representation of the set.
- //         * @return {String} A string representation of the set.
+ //         * @return {string} A string representation of the set.
          
  //        Set.prototype.toString = function() {
  //            return Array.prototype.toString.call(this.datastore);
@@ -983,7 +1176,15 @@ var JSDS = (function() {
 			 * @param {*} element Element to be added to stack
 			 */
 			Stack.prototype.push = function(element) {
-				this.datastore[this.top++] = element;
+				try {
+					if(arguments.length === 0) {
+						throw NoArgsError;
+					}
+					this.datastore[this.top++] = element;
+				}
+				catch(e) {
+					console.error(e);
+				}
 			};
 
 			/**
@@ -993,13 +1194,18 @@ var JSDS = (function() {
 			 * @return {*} Return the element at the top of the stack, or -1 if the stack is empty.
 			 */
 			Stack.prototype.pop = function() {
-				if(this.top <= 0) {
-					this.clear(); // reinitialise the underlying datastore and reset the top variable
-					return -1;	  // return -1 to indicate to the caller that the operation was unsuccessful
+				try {
+					if(this.top <= 0) {
+						this.clear(); // reinitialise the underlying datastore and reset the top variable
+						return -1;	  // return -1 to indicate to the caller that the operation was unsuccessful
+					}
+					var popped = this.datastore.pop(); // use Array.prototype.pop to remove last element of datastore
+					--this.top;
+					return popped;
 				}
-				var popped = this.datastore.pop(); // use Array.prototype.pop to remove last element of datastore
-				--this.top;
-				return popped;
+				catch(e) {
+					console.error(e);
+				}
 			};
 
 			/**
@@ -1008,15 +1214,25 @@ var JSDS = (function() {
 			 * @return {*} Return the top element of the stack or undefined if the stack is empty
 			 */
 			Stack.prototype.peek = function() {
-				return this.datastore[this.top-1];
+				try {
+					return this.datastore[this.top-1];
+				}
+				catch(e) {
+					console.error(e);
+				}
 			};
 
 			/**
 			 * @description Reset the stack and reinitialise the underlying datastore.
 			 */
 			Stack.prototype.clear = function() {
-				this.datastore = [];
-				this.top = 0;
+				try {
+					this.datastore = [];
+					this.top = 0;
+				}
+				catch(e) {
+					console.error(e);
+				}
 			};
 
 			/**
@@ -1024,7 +1240,13 @@ var JSDS = (function() {
 			 * @return {number} Return the number of elements in the stack.
 			 */
 			Stack.prototype.getLength = function() {
-				return this.top;
+				try {
+					return this.top;
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			};
 
 			/**
@@ -1032,7 +1254,13 @@ var JSDS = (function() {
 			 * @return {string} Return a string representation of the stack.
 			 */
 			Stack.prototype.toString = function() {
-				return this.datastore.toString();
+				try {
+					return this.datastore.toString();
+				}
+				catch(e) {
+					console.error(e);
+				}
+				
 			};
 
 		return Stack;
@@ -1048,7 +1276,7 @@ var JSDS = (function() {
 		Iter: Iter,
 		List: List,
 		Queue: Queue,
-		Set: Set,
+		// Set: Set,
 		Stack: Stack, 
 		extends: __extends, 
 		JSDSError: JSDSError
